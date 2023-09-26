@@ -10,7 +10,6 @@ int main() {
     int number_students = 0, number_disciplines = 0, number_registrations = 0;
     LinkedList *students = linked_list_construct();
     LinkedList *disciplines = linked_list_construct();
-    LinkedList *registrations = linked_list_construct();
 
     scanf("\n%d", &number_students);
     for (int i = 0; i < number_students; i++) {
@@ -30,13 +29,18 @@ int main() {
 
     scanf("\n%d", &number_registrations);
     for (int i = 0; i < number_registrations; i++) {
-        Registration *r = registration_construct();
-        registration_read(r);
-        linked_list_push_front(registrations, r);
+        char discipline_code[50];
+        int registration_number;
+        scanf("\n%[^;];%d,", discipline_code, &registration_number);
 
-        //Aqui sera interessante buscar o estudante pela matricular e associar ele a disciplina
-        //Pelo codigo da disciplina buscar a disiciplina tbm
-        //Preciso fazer uma funcao de busca na lista encadeada
+
+        int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_compare_code);
+        Discipline *d = linked_list_get(disciplines, disc_idx);
+
+        int stu_idx = linked_list_search(students, &registration_number, student_compare_registration);
+        Student *s = linked_list_get(students, stu_idx);
+
+        discipline_register_student(d, s);
     }
     return 0;
 }

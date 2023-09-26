@@ -1,10 +1,11 @@
 #ifndef _REGISTRATION_H
 #define _REGISTRATION_H
 #include "student.h"
+#include "discipline.h"
 
 typedef enum  {
-    YES = 1,
-    NO = 0
+    APPROVED = 1,
+    DISAPPROVED = 0
 } Approved;
 
 typedef struct Registration Registration;
@@ -18,6 +19,6 @@ struct Registration {
 
 Registration *registration_construct();
 void registration_destroy(Registration *r);
-void registration_read(Registration *r);
+void registration_read(Registration *r, Student *s);
 
 #endif

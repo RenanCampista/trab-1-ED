@@ -12,5 +12,6 @@ struct Student {
 Student *student_construct();
 void student_destroy(Student *s);
 void student_read(Student *s);
+int student_compare_registration(Student *s, int *registration_number);
 
 #endif

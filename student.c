@@ -19,3 +19,7 @@ void student_destroy(Student *s) {
 void student_read(Student *s) {
     scanf("\n%[^;];%d;%[^\n]", s->name, &s->registration_number, s->email);
 }
+
+int student_compare_registration(Student *s, int *registration_number) {
+    return s->registration_number == *registration_number;
+}

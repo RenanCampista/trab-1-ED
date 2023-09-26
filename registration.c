@@ -16,7 +16,11 @@ void registration_destroy(Registration *r) {
         free(r);
 }
 
-void registration_read(Registration *r) {
-    //Falta terminar
-    scanf("%f", &r->presence_percentage);
+void registration_read(Registration *r, Student *s) {
+    int status;
+    scanf("%f;%f;%d",&r->final_grade, &r->presence_percentage, &status);
+    r->approval_status = status == 1 ? APPROVED : DISAPPROVED ;
+    r->student = s;
 }
+
+

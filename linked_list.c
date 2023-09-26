@@ -90,3 +90,15 @@ void linked_list_unique(LinkedList *l) {
     }
 }
 
+int linked_list_search(LinkedList *l, void *data, int (*cmp_fn)(void *, void *)) {
+    Node *n = l->head;
+    int count = 0;
+
+    while(n != NULL) {
+        if (cmp_fn(n->data, data))
+            return count;
+        n = n->next;
+        count++;
+    }
+    return -1;
+}
