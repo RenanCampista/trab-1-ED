@@ -1,5 +1,5 @@
-#ifndef _DISCIPLINE_H
-#define _DISCIPLINE_H
+#ifndef _DISCIPLINE_H_
+#define _DISCIPLINE_H_
 
 typedef struct Discipline Discipline;
 
