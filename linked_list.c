@@ -10,6 +10,18 @@ LinkedList *linked_list_construct() {
     return l;
 }
 
+void linked_list_destroy(LinkedList *l) {
+    Node *n = l->head;
+    Node *aux;
+
+    while(n != NULL) {
+        aux = n->next;
+        node_destroy(n);
+        n = aux;
+    }
+    free(l);
+}
+
 int linked_list_size(LinkedList *l) {
     return l->size;
 }
@@ -78,14 +90,3 @@ void linked_list_unique(LinkedList *l) {
     }
 }
 
-void linked_list_destroy(LinkedList *l) {
-    Node *n = l->head;
-    Node *aux;
-
-    while(n != NULL) {
-        aux = n->next;
-        node_destroy(n);
-        n = aux;
-    }
-    free(l);
-}

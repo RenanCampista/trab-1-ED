@@ -16,4 +16,8 @@ struct Registration {
     Approved approval_status;
 };
 
+Registration *registration_construct();
+void registration_destroy(Registration *r);
+void registration_read(Registration *r);
+
 #endif

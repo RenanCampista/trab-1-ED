@@ -12,4 +12,9 @@ struct Discipline {
     LinkedList *registrations;
     LinkedList *prerequisites;
 };
+
+Discipline *discipline_construct();
+void discipline_destroy(Discipline *d);
+void discipline_read(Discipline *d);
+
 #endif

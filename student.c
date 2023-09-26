@@ -3,7 +3,7 @@
 #include <string.h>
 #include "student.h"
 
-Student *student_constroy() {
+Student *student_construct() {
     Student *s = (Student *) calloc(1, sizeof(Student));
     if (s == NULL)
         exit(printf("Problema ao alocar um estudante."));
@@ -11,7 +11,11 @@ Student *student_constroy() {
     return s;
 }
 
-void student_destruct(Student *s) {
+void student_destroy(Student *s) {
     if (s != NULL)
         free(s);
+}
+
+void student_read(Student *s) {
+    scanf("\n%[^;];%d;%[^\n]", s->name, &s->registration_number, s->email);
 }

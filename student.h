@@ -9,4 +9,8 @@ struct Student {
     int registration_number;
 };
 
+Student *student_construct();
+void student_destroy(Student *s);
+void student_read(Student *s);
+
 #endif
