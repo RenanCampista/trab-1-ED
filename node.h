@@ -10,6 +10,6 @@ struct Node {
 };
 
 Node *node_construct(data_type value, Node *next);
-
+void node_destroy(Node *n);
 
 #endif

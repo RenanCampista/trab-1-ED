@@ -5,11 +5,10 @@
 Node *node_construct(data_type value, Node *next) {
     Node *n = (Node *) calloc(1, sizeof(Node));
     if (n == NULL) 
-        exit(printf("Problema ao alocar um no"));
+        exit(printf("Problema ao alocar um no.\n"));
 
     n->data = value;
     n->next = next;
-
     return n;
 }
 
