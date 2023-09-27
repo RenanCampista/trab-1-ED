@@ -11,7 +11,7 @@ struct Student {
 };
 
 Student *student_construct();
-void student_destroy(Student *s);
+void student_destroy(data_type data);
 void student_read(Student *s);
 int student_compare_registration(data_type data, data_type target_code);
 void student_print_name(data_type data);

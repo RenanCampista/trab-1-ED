@@ -72,5 +72,11 @@ int main() {
         discipline_register_student(d, s);
     }
     
+
+    /**
+     * Desaloca os alunos e as disciplinas
+    */
+    linked_list_destroy(students, student_destroy);
+    linked_list_destroy(disciplines, discipline_destroy);
     return 0;
 }

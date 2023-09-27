@@ -11,9 +11,9 @@ Student *student_construct() {
     return s;
 }
 
-void student_destroy(Student *s) {
-    if (s != NULL)
-        free(s);
+void student_destroy(data_type data) {
+    Student *s = (Student *)data;
+    free(s);
 }
 
 void student_read(Student *s) {

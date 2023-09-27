@@ -10,13 +10,13 @@ LinkedList *linked_list_construct() {
     return l;
 }
 
-void linked_list_destroy(LinkedList *l) {
+void linked_list_destroy(LinkedList *l, void (*destroy_fn)(data_type)) {
     Node *n = l->head;
     Node *aux;
 
     while(n != NULL) {
         aux = n->next;
-        node_destroy(n);
+        node_destroy(n, destroy_fn);
         n = aux;
     }
     free(l);
@@ -56,7 +56,7 @@ data_type linked_list_pop_front(LinkedList *l) {
     Node *n = l->head;
     data_type data_removed = n->data;
     l->head = n->next;
-    node_destroy(n);
+    //node_destroy(n);
     l->size--;
     return data_removed;
 }
@@ -81,7 +81,7 @@ void linked_list_unique(LinkedList *l) {
         while(aux != NULL) {
             if (n->data == aux->data) {
                 n->next = aux->next;
-                node_destroy(aux);
+               // node_destroy(aux);
                 l->size--;
             }
             aux = aux->next;

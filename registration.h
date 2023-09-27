@@ -18,7 +18,7 @@ struct Registration {
 };
 
 Registration *registration_construct();
-void registration_destroy(Registration *r);
+void registration_destroy(data_type data);
 void registration_read(Registration *r, Student *s);
 
 #endif

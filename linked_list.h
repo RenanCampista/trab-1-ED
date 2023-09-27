@@ -10,7 +10,7 @@ struct LinkedList {
 };
 
 LinkedList *linked_list_construct();
-void linked_list_destroy(LinkedList *l);
+void linked_list_destroy(LinkedList *l, void (*destroy_fn)(data_type));
 int linked_list_size(LinkedList *l);
 void linked_list_push_front(LinkedList *l, data_type data);
 void linked_list_print(LinkedList *l, void (*print_fn)(data_type));

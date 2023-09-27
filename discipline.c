@@ -12,9 +12,11 @@ Discipline *discipline_construct() {
     return d;
 }
 
-void discipline_destroy(Discipline *d) {
-    if (d != NULL)
-        free(d);
+void discipline_destroy(data_type data) {
+    Discipline *d = (Discipline *)data;
+    linked_list_destroy(d->registrations, registration_destroy);
+    linked_list_destroy(d->prerequisites, discipline_destroy);
+    free(d);
 }
 
 void discipline_read(Discipline *d) {
@@ -28,9 +30,9 @@ void discipline_register_student(Discipline *d, Student *s) {
 }
 
 int discipline_compare_code(data_type data, data_type target_code) {
-    Discipline *discipline = (Discipline *)data;
+    Discipline *d = (Discipline *)data;
     char *code = (char *)target_code;
-    return strcmp(discipline->code, code) == 0;
+    return strcmp(d->code, code) == 0;
 }
 
 void discipline_add_prerequisite(Discipline *d, Discipline *p) {

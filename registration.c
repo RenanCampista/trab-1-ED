@@ -11,9 +11,9 @@ Registration *registration_construct() {
     return r;
 }
 
-void registration_destroy(Registration *r) {
-    if (r != NULL)
-        free(r);
+void registration_destroy(data_type data) {
+    Registration *r = (Registration *)data;
+    free(r);
 }
 
 void registration_read(Registration *r, Student *s) {
