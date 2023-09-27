@@ -27,8 +27,8 @@ void discipline_register_student(Discipline *d, Student *s) {
     linked_list_push_front(d->registrations, r);
 }
 
-int discipline_compare_code(Discipline *d, char *code) {
-    if (strcmp(d->code, code) == 0)
-        return 1;
-    return 0;
+int discipline_compare_code(data_type data, data_type target_code) {
+    Discipline *discipline = (Discipline *)data;
+    char *code = (char *)target_code;
+    return strcmp(discipline->code, code) == 0;
 }

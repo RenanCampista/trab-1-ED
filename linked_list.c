@@ -90,7 +90,7 @@ void linked_list_unique(LinkedList *l) {
     }
 }
 
-int linked_list_search(LinkedList *l, void *data, int (*cmp_fn)(void *, void *)) {
+int linked_list_search(LinkedList *l, data_type data, int (*cmp_fn)(data_type, data_type)) {
     Node *n = l->head;
     int count = 0;
 
@@ -102,3 +102,6 @@ int linked_list_search(LinkedList *l, void *data, int (*cmp_fn)(void *, void *))
     }
     return -1;
 }
+
+
+

@@ -20,6 +20,8 @@ void student_read(Student *s) {
     scanf("\n%[^;];%d;%[^\n]", s->name, &s->registration_number, s->email);
 }
 
-int student_compare_registration(Student *s, int *registration_number) {
-    return s->registration_number == *registration_number;
+int student_compare_registration(data_type data, data_type target_code) {
+    Student *student = (Student *)data;
+    int *registration_number = (int *)target_code;
+    return student->registration_number == *registration_number;
 }

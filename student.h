@@ -1,5 +1,6 @@
 #ifndef _STUDENT_H
 #define _STUDENT_H
+#include "linked_list.h"
 
 typedef struct Student Student;
 
@@ -12,6 +13,6 @@ struct Student {
 Student *student_construct();
 void student_destroy(Student *s);
 void student_read(Student *s);
-int student_compare_registration(Student *s, int *registration_number);
+int student_compare_registration(data_type data, data_type target_code);
 
 #endif

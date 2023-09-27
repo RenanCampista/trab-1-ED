@@ -17,5 +17,6 @@ Discipline *discipline_construct();
 void discipline_destroy(Discipline *d);
 void discipline_read(Discipline *d);
 void discipline_register_student(Discipline *d, Student *s);
-int discipline_compare_code(Discipline *d, char *code);
+int discipline_compare_code(data_type data, data_type target_code);
+
 #endif

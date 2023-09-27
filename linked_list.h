@@ -18,6 +18,6 @@ data_type linked_list_get(LinkedList *l, int i);
 data_type linked_list_pop_front(LinkedList *l);
 LinkedList *linked_list_reverse(LinkedList *l);
 void linked_list_unique(LinkedList *l);
-int linked_list_search(LinkedList *l, void *data, int (*cmp_fn)(void *, void *));
+int linked_list_search(LinkedList *l, data_type data, int (*cmp_fn)(data_type, data_type));
 
 #endif
