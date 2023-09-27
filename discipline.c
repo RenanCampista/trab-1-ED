@@ -32,3 +32,7 @@ int discipline_compare_code(data_type data, data_type target_code) {
     char *code = (char *)target_code;
     return strcmp(discipline->code, code) == 0;
 }
+
+void discipline_add_prerequisite(Discipline *d, Discipline *p) {
+    linked_list_push_front(d->prerequisites, p);
+}

@@ -18,5 +18,5 @@ void discipline_destroy(Discipline *d);
 void discipline_read(Discipline *d);
 void discipline_register_student(Discipline *d, Student *s);
 int discipline_compare_code(data_type data, data_type target_code);
-
+void discipline_add_prerequisite(Discipline *d, Discipline *p);
 #endif
