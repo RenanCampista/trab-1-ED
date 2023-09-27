@@ -102,6 +102,3 @@ int linked_list_search(LinkedList *l, data_type data, int (*cmp_fn)(data_type, d
     }
     return -1;
 }
-
-
-

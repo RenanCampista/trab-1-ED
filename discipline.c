@@ -36,3 +36,8 @@ int discipline_compare_code(data_type data, data_type target_code) {
 void discipline_add_prerequisite(Discipline *d, Discipline *p) {
     linked_list_push_front(d->prerequisites, p);
 }
+
+void discipline_print_name(data_type data) {
+    Discipline *d = (Discipline *)data;
+    printf("%s\n", d->name);
+}

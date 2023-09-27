@@ -71,5 +71,6 @@ int main() {
         Student *s = linked_list_get(students, stu_idx);
         discipline_register_student(d, s);
     }
+    
     return 0;
 }

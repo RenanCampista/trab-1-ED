@@ -21,7 +21,12 @@ void student_read(Student *s) {
 }
 
 int student_compare_registration(data_type data, data_type target_code) {
-    Student *student = (Student *)data;
+    Student *s = (Student *)data;
     int *registration_number = (int *)target_code;
-    return student->registration_number == *registration_number;
+    return s->registration_number == *registration_number;
+}
+
+void student_print_name(data_type data) {
+    Student *s = (Student *)data;
+    printf("%s\n", s->name);
 }
