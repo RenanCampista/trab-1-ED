@@ -23,4 +23,11 @@ void registration_read(Registration *r, Student *s) {
     r->student = s;
 }
 
+Student *registration_get_student(data_type data) {
+    Registration *r = (Registration *)data;
+    return r->student;
+}
 
+int registration_compare_student(Registration *r1, Registration *r2) {
+    return student_compare_registration(r1->student, r2->student);
+}

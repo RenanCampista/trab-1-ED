@@ -20,7 +20,7 @@ void student_read(Student *s) {
     scanf("\n%[^;];%d;%[^\n]", s->name, &s->registration_number, s->email);
 }
 
-int student_compare_registration(data_type data, data_type target_code) {
+int student_verify_registration(data_type data, data_type target_code) {
     Student *s = (Student *)data;
     int *registration_number = (int *)target_code;
     return s->registration_number == *registration_number;
@@ -29,4 +29,10 @@ int student_compare_registration(data_type data, data_type target_code) {
 void student_print_name(data_type data) {
     Student *s = (Student *)data;
     printf("%s\n", s->name);
+}
+
+int student_compare_registration(data_type data1, data_type data2) {
+    Student *s1 = (Student *)data1;
+    Student *s2 = (Student *)data2;
+    return s1->registration_number == s2->registration_number;
 }

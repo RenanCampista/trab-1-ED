@@ -40,8 +40,8 @@ int main() {
         char discipline_code[50], prerequisite_code[50];
         scanf("\n%[^;];%[^\n]", discipline_code, prerequisite_code);
 
-        int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_compare_code);
-        int pre_idx = linked_list_search(disciplines, &prerequisite_code, discipline_compare_code);
+        int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_verify_code);
+        int pre_idx = linked_list_search(disciplines, &prerequisite_code, discipline_verify_code);
         if (disc_idx == -1 || pre_idx == -1)
             continue;
 

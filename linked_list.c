@@ -52,11 +52,11 @@ data_type linked_list_get(LinkedList *l, int i) {
     return n->data;
 }
 
-data_type linked_list_pop_front(LinkedList *l) {
+data_type linked_list_pop_front(LinkedList *l, void (*destroy_fn)(data_type)) {
     Node *n = l->head;
     data_type data_removed = n->data;
     l->head = n->next;
-    //node_destroy(n);
+    node_destroy(n, destroy_fn);
     l->size--;
     return data_removed;
 }
@@ -72,16 +72,15 @@ LinkedList *linked_list_reverse(LinkedList *l) {
     return r;
 }
 
-void linked_list_unique(LinkedList *l) {
+void linked_list_unique(LinkedList *l, int (*cmp_fn)(data_type, data_type), void (*destroy_fn)(data_type)) {
     Node *n = l->head;
     Node *aux;
-
     while(n != NULL) {
         aux = n->next;
         while(aux != NULL) {
-            if (n->data == aux->data) {
+            if (cmp_fn(n->data, aux->data)) {
+                node_destroy(aux, destroy_fn);
                 n->next = aux->next;
-               // node_destroy(aux);
                 l->size--;
             }
             aux = aux->next;
