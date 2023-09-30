@@ -50,6 +50,16 @@ void discipline_print_name(data_type data) {
     printf("%s\n", d->name);
 }
 
+void discipline_print_teacher(data_type data) {
+    Discipline *d = (Discipline *)data;
+    printf("%s\n", d->teacher);
+}
+
+void discipline_print_code(data_type data) {
+    Discipline *d = (Discipline *)data;
+    printf("%s", d->code);
+}
+
 void discipline_show_students(Discipline *d) {
     //Relatorio 1
     LinkedList *students = linked_list_construct();
@@ -66,6 +76,10 @@ void discipline_show_students(Discipline *d) {
     linked_list_destroy(students, student_destroy);
 }
 
+int discipline_get_number_registrations(Discipline *d) {
+    return linked_list_size(d->registrations);
+}
+
 LinkedList *discipline_get_direct_prerequisites(Discipline *d) {
     //Relatorio 2
     LinkedList *prerequisites = linked_list_construct();
@@ -80,7 +94,7 @@ LinkedList *discipline_get_direct_prerequisites(Discipline *d) {
     return prerequisites;
 }
 
-LinkedList *discipline_show_full_prerequisites(Discipline *d) {
+LinkedList *discipline_get_full_prerequisites(Discipline *d) {
     //Relatorio 3
     LinkedList *prerequisites = linked_list_construct();
 
@@ -113,4 +127,77 @@ int discipline_has_registration(Discipline *d, Registration *r) {
 
     //Se retorna 1, pega a disciplina e adiciona na lista de disciplinas
     //Lembrar de retirar possiveis repeticoes e exibir no final.
+}
+
+int discipline_get_disapprovals_by_teacher(Discipline *d) {
+    //Relatorio 5 (Reprovacoes por professor)
+    /**
+     * Para esse relatorio, fazer uma busca na lista de matriculas com o nome do professor e contabilizar o numero de reprovacoes
+     * Bem provavel que eu tenha que criar uma lista para armazenar o nome do professor de o numero de matriculas
+     * Nao sei ainda como salvar o professor e o numero de reprovacoes por ele
+    */
+    int disapprovals = 0;
+
+    for (int i = 0; i < linked_list_size(d->registrations); i++) {
+        Registration *r = linked_list_get(d->registrations, i);
+        if (registration_get_status(r) == DISAPPROVED)
+            disapprovals++;
+    }
+
+    return disapprovals;
+}
+
+int discipline_is_approved(Discipline *d, int registration_number) {
+    //Relatorio 6
+    //Buscar o aluno na lista de matriculas. Retornar 1 se aprovado e 0 se reprovado
+    int idx = linked_list_search(d->registrations, &registration_number, student_compare_registration);
+    if (idx == -1)
+        return 0;
+
+    Registration *r = linked_list_get(d->registrations, idx);
+    return registration_get_status(r) == APPROVED;
+    /**
+     * Na main, se retornar 1, adicionar a uma lista para entao ordenar ela no final
+    */
+}
+
+void discipline_check_inconsistency(Discipline *d) {
+    //Relatorio 7 Verificar se na disciplina ha alguma inconsistencia na matricula
+    //Discipline *d = (Discipline *)data;
+
+    for (int i = 0; i < linked_list_size(d->registrations); i++) {
+        Registration *r = linked_list_get(d->registrations, i);
+        if (registration_check_inconsistency(r)) {
+            discipline_print_code(d);
+            printf(";");
+            registration_print(r);
+            // Student *s = registration_get_student(r);
+            // printf("%s\n", student_get_name(s));
+        }
+    }
+}
+
+int discipline_check_prerequisites(Discipline *d) {
+    //Relatorio 8
+    //Verificar se os alunos da disciplina cursaram os pre requisitos e retornar o total de alunos que nao cursaram os pre requisitos se houver
+    int total = 0, aux = 0;
+
+    for (int i = 0; i < linked_list_size(d->registrations); i++) {
+        Registration *r = linked_list_get(d->registrations, i);
+        //Student *s = registration_get_student(r);
+        LinkedList *prerequisites = discipline_get_full_prerequisites(d);
+
+        aux = 0;
+        for (int j = 0; j < linked_list_size(prerequisites); j++) {
+            Discipline *p = linked_list_get(prerequisites, j);
+            if (!discipline_has_registration(p, r)) {
+                aux = 1;
+
+            }
+        }
+        if (aux == 1)
+            total++;
+    }
+
+    return total;
 }

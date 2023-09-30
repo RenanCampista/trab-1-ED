@@ -73,6 +73,40 @@ int main() {
     }
     
 
+
+    /**
+     * Relatorio 10
+     * Obter o numero de disciplinas que o aluno cursou
+    */
+    for (int i = 0; i < number_students; i++) {
+        Student *s = linked_list_get(students, i);
+        student_print_name(s);
+        student_print_registration_number(s);
+
+
+        int count_approved = 0, count_registered = 0;
+        float average_grade = 0;
+        //Verificar a quantidade de disciplinas que o aluno foi aprovado
+        for (int j = 0; j < number_disciplines; j++) {
+            Discipline *d = linked_list_get(disciplines, j);
+
+            for (int k = 0; k < discipline_get_number_registrations(d); k++) {
+                Registration *r = linked_list_get(d->registrations, k);
+                if (registration_verify_student(r, s)) {
+                    if (registration_get_status(r) == APPROVED) {
+                        count_approved++;
+                    }
+                    average_grade += registration_get_grade(r);
+                    count_registered++;
+                    break;
+                }
+            }
+        }
+        average_grade /= count_registered;
+        printf(";%d;%.2f\n", count_approved, average_grade);
+        
+    }
+
     /**
      * Desaloca os alunos e as disciplinas
     */

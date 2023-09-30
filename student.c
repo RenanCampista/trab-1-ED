@@ -31,6 +31,11 @@ void student_print_name(data_type data) {
     printf("%s\n", s->name);
 }
 
+void student_print_registration_number(Student *s) {
+   // Student *s = (Student *)data;
+    printf("%d", s->registration_number);
+}
+
 int student_compare_registration(data_type data1, data_type data2) {
     Student *s1 = (Student *)data1;
     Student *s2 = (Student *)data2;
