@@ -32,6 +32,32 @@ void linked_list_push_front(LinkedList *l, data_type data) {
     l->size++;
 }
 
+void linked_list_remove(LinkedList *l, data_type value, void (*destroy_fn)(data_type)) {
+    Node *n = l->head;
+    Node *aux;
+
+    if (n == NULL)
+        return;
+
+    if (n->data == value) {
+        l->head = n->next;
+        node_destroy(n, destroy_fn);
+        l->size--;
+        return;
+    }
+
+    while(n->next != NULL) {
+        if (n->next->data == value) {
+            aux = n->next;
+            n->next = aux->next;
+            node_destroy(aux, destroy_fn);
+            l->size--;
+            return;
+        }
+        n = n->next;
+    }
+}
+
 void linked_list_print(LinkedList *l, void (*print_fn)(data_type)) {
     Node *n = l->head;
 

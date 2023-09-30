@@ -201,3 +201,42 @@ int discipline_check_prerequisites(Discipline *d) {
 
     return total;
 }
+
+int discipline_get_number_approved(Discipline *d) {
+    int approved = 0;
+
+    for (int i = 0; i < linked_list_size(d->registrations); i++) {
+        Registration *r = linked_list_get(d->registrations, i);
+        if (registration_get_status(r) == APPROVED)
+            approved++;
+    }
+
+    return approved;
+}
+
+float discipline_get_average_grade(Discipline *d) {
+    float average = 0;
+
+    for (int i = 0; i < linked_list_size(d->registrations); i++) {
+        Registration *r = linked_list_get(d->registrations, i);
+        average += registration_get_grade(r);
+    }
+
+    return average / linked_list_size(d->registrations);
+}
+
+float discipline_get_approval_percentage(Discipline *d) {
+    int approved = discipline_get_number_approved(d);
+    return (float)approved / linked_list_size(d->registrations);
+}
+
+void discipline_print_statistics(Discipline *d) {
+    //Relatório 11
+    discipline_print_code(d);
+    printf(";");
+    discipline_print_name(d);
+    //Num aprovacoes
+    printf("%d;", discipline_get_number_approved(d));
+    //Media das notas
+    printf("%.2f;", discipline_get_average_grade(d));
+}

@@ -22,5 +22,6 @@ int discipline_compare_code(data_type data1, data_type data2);
 void discipline_add_prerequisite(Discipline *d, Discipline *p);
 void discipline_print_name(data_type data);
 int discipline_get_number_registrations(Discipline *d);
-
+int discipline_get_number_approved(Discipline *d);
+void discipline_print_statistics(Discipline *d);
 #endif

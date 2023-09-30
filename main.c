@@ -108,6 +108,34 @@ int main() {
     }
 
     /**
+     * Relatorio 11
+     * Informações sobre cada disciplina
+     * Ordenar as disciplinas pelo percentual de aprovacao
+    */
+    for (int i = 0; i < number_disciplines; i++) {
+        Discipline *d = linked_list_get(disciplines, i);
+        discipline_print_statistics(d);
+    }
+
+    /**
+     * Relatorio 12
+     * Ler o codigo de uma disciplina e remover todas as menções à disciplina nas estruturas de dados
+    */
+    char discipline_code[50];
+    scanf("\n%[^\n]", discipline_code);
+    int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_compare_code);
+    if (disc_idx != -1) {
+        Discipline *d = linked_list_get(disciplines, disc_idx);
+
+        //Remover de todos os prerequisitos
+        for (int i = 0; i < number_disciplines; i++) {
+            Discipline *p = linked_list_get(disciplines, i);
+            linked_list_remove(p->prerequisites, d, discipline_destroy);
+        }
+        linked_list_remove(disciplines, d, discipline_destroy);
+    }
+
+    /**
      * Desaloca os alunos e as disciplinas
     */
     linked_list_destroy(students, student_destroy);
