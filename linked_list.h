@@ -20,5 +20,6 @@ data_type linked_list_pop_front(LinkedList *l, void (*destroy_fn)(data_type));
 LinkedList *linked_list_reverse(LinkedList *l);
 void linked_list_unique(LinkedList *l, int (*cmp_fn)(data_type, data_type), void (*destroy_fn)(data_type));
 int linked_list_search(LinkedList *l, data_type data, int (*cmp_fn)(data_type, data_type));
+void linked_list_sort(LinkedList *l, int (*cmp_fn)(data_type, data_type));
 
 #endif
