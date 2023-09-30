@@ -37,6 +37,11 @@ float registration_get_grade(data_type data) {
     return r->final_grade;
 }
 
+int registration_get_registration_number(data_type data) {
+    Registration *r = (Registration *)data;
+    return student_get_registration_number(r->student);
+}
+
 int registration_verify_student(data_type data, data_type target_student) {
     Registration *r = (Registration *)data;
     Student *s = (Student *)target_student;

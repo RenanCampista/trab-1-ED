@@ -26,6 +26,10 @@ int student_verify_registration(data_type data, data_type target_code) {
     return s->registration_number == *registration_number;
 }
 
+int student_get_registration_number(Student *s) {
+    return s->registration_number;
+}
+
 void student_print_name(data_type data) {
     Student *s = (Student *)data;
     printf("%s\n", s->name);

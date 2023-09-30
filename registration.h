@@ -22,6 +22,7 @@ void registration_destroy(data_type data);
 void registration_read(Registration *r, Student *s);
 int registration_get_status(Registration *r);
 Student *registration_get_student(data_type data);
+int registration_get_registration_number(data_type data);
 int registration_compare_student(Registration *r1, Registration *r2);
 int registration_check_inconsistency(Registration *r);
 void registration_print(Registration *r);
