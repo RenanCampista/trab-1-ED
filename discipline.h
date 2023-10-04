@@ -25,4 +25,7 @@ void discipline_print_data(data_type data);
 int discipline_get_number_registrations(Discipline *d);
 int discipline_get_number_approved(Discipline *d);
 void discipline_print_statistics(Discipline *d);
+
+int discipline_has_registration(Discipline *d, Student *s);
+
 #endif

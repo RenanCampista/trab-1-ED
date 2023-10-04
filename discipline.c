@@ -139,11 +139,11 @@ LinkedList *discipline_get_full_prerequisites(Discipline *d) {
     return prerequisites;
 }
 
-int discipline_has_registration(Discipline *d, Registration *r) {
+int discipline_has_registration(Discipline *d, Student *s) {
     //Para o relatorio 4
     for (int i = 0; i < linked_list_size(d->registrations); i++) {
         Registration *r2 = linked_list_get(d->registrations, i);
-        if (registration_compare_student(r2, r))
+        if (registration_verify_student(r2, s))
             return 1;
     }
     return 0;
@@ -213,7 +213,8 @@ int discipline_check_prerequisites(Discipline *d) {
         aux = 0;
         for (int j = 0; j < linked_list_size(prerequisites); j++) {
             Discipline *p = linked_list_get(prerequisites, j);
-            if (!discipline_has_registration(p, r)) {
+            Student *s = registration_get_student(r);
+            if (!discipline_has_registration(p, s)) {
                 aux = 1;
 
             }
@@ -238,7 +239,8 @@ int discipline_check_prerequisites_disapproved(Discipline *d) {
         aux = 0;
         for (int j = 0; j < linked_list_size(prerequisites); j++) {
             Discipline *p = linked_list_get(prerequisites, j);
-            if (discipline_has_registration(p, r)) {
+            Student *s = registration_get_student(r);
+            if (discipline_has_registration(p, s)) {
                 if (!discipline_is_approved(p, registration_get_registration_number(r))) {
                     aux = 1;
                 }

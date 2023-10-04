@@ -22,6 +22,18 @@ void linked_list_destroy(LinkedList *l, void (*destroy_fn)(data_type)) {
     free(l);
 }
 
+void linked_list_destroy_node(LinkedList *l) {
+    Node *n = l->head;
+
+    while(n != NULL) {
+        l->head = n->next;
+        free(n);
+        n = l->head;
+    }
+
+    free(l);
+}
+
 int linked_list_size(LinkedList *l) {
     return l->size;
 }

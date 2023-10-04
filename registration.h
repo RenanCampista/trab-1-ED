@@ -28,4 +28,5 @@ int registration_check_inconsistency(Registration *r);
 void registration_print(Registration *r);
 int registration_verify_student(data_type data, data_type target_student);
 float registration_get_grade(data_type data);
+
 #endif

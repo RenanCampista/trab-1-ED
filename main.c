@@ -78,6 +78,27 @@ int main() {
         discipline_register_student(d, s);
     }
     
+    //Relatorio 4 funcionando
+    // int number_registrations_to_change = 0;
+    // scanf("\n%d", &number_registrations_to_change);
+    // int idx_r = linked_list_search(students, &number_registrations_to_change, student_verify_registration);
+    // Student *s = linked_list_get(students, idx_r);
+    // LinkedList *registrations_student = linked_list_construct();
+    // for (int i = 0; i < linked_list_size(disciplines); i++) {
+    //     Discipline *d = linked_list_get(disciplines, i);
+
+    //     if (discipline_has_registration(d, s)) {
+    //         linked_list_push_front(registrations_student, d);
+    //     }
+    // }
+    // //remover disciplinas repetidas
+    // linked_list_unique(registrations_student, discipline_compare_code, discipline_destroy);
+    // linked_list_print(registrations_student, discipline_print_name);
+    // linked_list_destroy_node(registrations_student);
+
+
+
+
    // linked_list_print(disciplines, discipline_print_data);
 
     /**
