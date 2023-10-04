@@ -22,6 +22,4 @@ void linked_list_unique(LinkedList *l, int (*cmp_fn)(data_type, data_type), void
 int linked_list_search(LinkedList *l, data_type data, int (*cmp_fn)(data_type, data_type));
 void linked_list_sort(LinkedList *l, int (*cmp_fn)(data_type, data_type));
 
-
-
 #endif

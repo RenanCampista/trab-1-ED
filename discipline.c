@@ -72,6 +72,14 @@ void discipline_print_data(data_type data) {
         printf("%s ", p->name);
     }
     printf("\n\n");
+    printf("Alunos matriculados: ");
+    for (int i = 0; i < linked_list_size(d->registrations); i++) {
+        Registration *r = linked_list_get(d->registrations, i);
+        Student *s = registration_get_student(r);
+        student_print_name(s);
+        printf("\n");
+    }
+    printf("\n");
 
 }
 

@@ -39,7 +39,7 @@ int main() {
     for (int i = 0; i < number_prerequisites; i++) {
         data_type discipline_code[50], prerequisite_code[50];
 
-        scanf("\n%50[^;];%50[^\n]\n", (char*)discipline_code, (char*)prerequisite_code);
+        scanf("\n%50[^;];%s", (char*)discipline_code, (char*)prerequisite_code);
 
         int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
         int pre_idx = linked_list_search(disciplines, prerequisite_code, discipline_verify_code);
@@ -59,22 +59,26 @@ int main() {
      * Em seguida, registra o aluno em uma das disciplinas da lista
     */
     for (int i = 0; i < number_registrations; i++) {
-        char discipline_code[50];
+        data_type discipline_code[50];
         int registration_number;
-        scanf("\n%[^;];%d,", discipline_code, &registration_number);
 
+        scanf("\n%50[^;];%d;", (char*)discipline_code, &registration_number);
 
-        int disc_idx = linked_list_search(disciplines, discipline_code, discipline_compare_code);
+        int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
         int stu_idx = linked_list_search(students, &registration_number, student_verify_registration);
-        if (disc_idx == -1 || stu_idx == -1)
+        //printf("disc_idx: %d e stu_idx: %d\n", disc_idx, stu_idx);
+        if (disc_idx == -1 || stu_idx == -1) {
+            //limpar a linha
+            char line[100];
+            scanf("%[^\n]", line);
             continue;
-
+        }
         Discipline *d = linked_list_get(disciplines, disc_idx);
         Student *s = linked_list_get(students, stu_idx);
         discipline_register_student(d, s);
     }
     
-    linked_list_print(disciplines, discipline_print_data);
+   // linked_list_print(disciplines, discipline_print_data);
 
     /**
      * Relatorio 10

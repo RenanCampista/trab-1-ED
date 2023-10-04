@@ -128,20 +128,6 @@ int linked_list_search(LinkedList *l, data_type data, int (*cmp_fn)(data_type, d
     return -1;
 }
 
-data_type linked_list_search2(LinkedList *l, data_type data, int (*cmp_fn)(data_type, data_type)) {
-    Node *n = l->head;
-    int count = 0;
-
-    while(n != NULL) {
-        if (cmp_fn(n->data, data))
-            //return count;
-        n = n->next;
-        count++;
-    }
-    return NULL;
-}
-
-
 void linked_list_sort(LinkedList *l, int (*cmp_fn)(data_type, data_type)) {
     Node *n = l->head;
     Node *aux;
