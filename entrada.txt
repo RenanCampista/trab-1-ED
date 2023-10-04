@@ -6,8 +6,8 @@ Lucas Louzada;888;lucas@email.com
 Programacao I;INF-1;Thiara 
 Estruturas de Dados;INF-2;Filomena 
 1 
-INF-2;INF-1 
-4 
+INF-2;INF-1
+7 
 INF-2;888;3;1;0 
 INF-2;888;7;0.1;0 
 INF-2;888;9;1;0 

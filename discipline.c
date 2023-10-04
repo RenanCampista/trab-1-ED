@@ -14,9 +14,12 @@ Discipline *discipline_construct() {
 
 void discipline_destroy(data_type data) {
     Discipline *d = (Discipline *)data;
-    linked_list_destroy(d->registrations, registration_destroy);
-    linked_list_destroy(d->prerequisites, discipline_destroy);
-    free(d);
+    if (d != NULL) {
+        linked_list_destroy(d->registrations, registration_destroy);
+    
+        linked_list_destroy(d->prerequisites, NULL);
+        free(d);
+    }
 }
 
 void discipline_read(Discipline *d) {
@@ -58,6 +61,18 @@ void discipline_print_teacher(data_type data) {
 void discipline_print_code(data_type data) {
     Discipline *d = (Discipline *)data;
     printf("%s", d->code);
+}
+
+void discipline_print_data(data_type data) {
+    Discipline *d = (Discipline *)data;
+    printf("Disciplina: %s\n", d->name);
+    printf("Pre requisitos: ");
+    for (int i = 0; i < linked_list_size(d->prerequisites); i++) {
+        Discipline *p = linked_list_get(d->prerequisites, i);
+        printf("%s ", p->name);
+    }
+    printf("\n\n");
+
 }
 
 void discipline_show_students(Discipline *d) {

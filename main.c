@@ -36,15 +36,17 @@ int main() {
      * Busca a disciplina pelo código e a pré-requisito pelo código
      * Em seguida, adiciona a pré-requisito na lista de pré-requisitos da disciplina
     */
-    for (int i = 0; i < number_disciplines; i++) {
-        char discipline_code[50], prerequisite_code[50];
-        scanf("\n%[^;];%[^\n]", discipline_code, prerequisite_code);
+    for (int i = 0; i < number_prerequisites; i++) {
+        data_type discipline_code[50], prerequisite_code[50];
 
-        int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_verify_code);
-        int pre_idx = linked_list_search(disciplines, &prerequisite_code, discipline_verify_code);
-        if (disc_idx == -1 || pre_idx == -1)
+        scanf("\n%50[^;];%50[^\n]\n", (char*)discipline_code, (char*)prerequisite_code);
+
+        int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
+        int pre_idx = linked_list_search(disciplines, prerequisite_code, discipline_verify_code);
+
+        if (disc_idx == -1 || pre_idx == -1) 
             continue;
-
+        
         Discipline *d = linked_list_get(disciplines, disc_idx);
         Discipline *p = linked_list_get(disciplines, pre_idx);
         discipline_add_prerequisite(d, p);
@@ -62,8 +64,8 @@ int main() {
         scanf("\n%[^;];%d,", discipline_code, &registration_number);
 
 
-        int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_compare_code);
-        int stu_idx = linked_list_search(students, &registration_number, student_compare_registration);
+        int disc_idx = linked_list_search(disciplines, discipline_code, discipline_compare_code);
+        int stu_idx = linked_list_search(students, &registration_number, student_verify_registration);
         if (disc_idx == -1 || stu_idx == -1)
             continue;
 
@@ -72,68 +74,68 @@ int main() {
         discipline_register_student(d, s);
     }
     
-
+    linked_list_print(disciplines, discipline_print_data);
 
     /**
      * Relatorio 10
      * Obter o numero de disciplinas que o aluno cursou
     */
-    for (int i = 0; i < number_students; i++) {
-        Student *s = linked_list_get(students, i);
-        student_print_name(s);
-        student_print_registration_number(s);
+    // for (int i = 0; i < number_students; i++) {
+    //     Student *s = linked_list_get(students, i);
+    //     student_print_name(s);
+    //     student_print_registration_number(s);
 
 
-        int count_approved = 0, count_registered = 0;
-        float average_grade = 0;
-        //Verificar a quantidade de disciplinas que o aluno foi aprovado
-        for (int j = 0; j < number_disciplines; j++) {
-            Discipline *d = linked_list_get(disciplines, j);
+    //     int count_approved = 0, count_registered = 0;
+    //     float average_grade = 0;
+    //     //Verificar a quantidade de disciplinas que o aluno foi aprovado
+    //     for (int j = 0; j < number_disciplines; j++) {
+    //         Discipline *d = linked_list_get(disciplines, j);
 
-            for (int k = 0; k < discipline_get_number_registrations(d); k++) {
-                Registration *r = linked_list_get(d->registrations, k);
-                if (registration_verify_student(r, s)) {
-                    if (registration_get_status(r) == APPROVED) {
-                        count_approved++;
-                    }
-                    average_grade += registration_get_grade(r);
-                    count_registered++;
-                    break;
-                }
-            }
-        }
-        average_grade /= count_registered;
-        printf(";%d;%.2f\n", count_approved, average_grade);
+    //         for (int k = 0; k < discipline_get_number_registrations(d); k++) {
+    //             Registration *r = linked_list_get(d->registrations, k);
+    //             if (registration_verify_student(r, s)) {
+    //                 if (registration_get_status(r) == APPROVED) {
+    //                     count_approved++;
+    //                 }
+    //                 average_grade += registration_get_grade(r);
+    //                 count_registered++;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     average_grade /= count_registered;
+    //     printf(";%d;%.2f\n", count_approved, average_grade);
         
-    }
+    // }
 
-    /**
-     * Relatorio 11
-     * Informações sobre cada disciplina
-     * Ordenar as disciplinas pelo percentual de aprovacao
-    */
-    for (int i = 0; i < number_disciplines; i++) {
-        Discipline *d = linked_list_get(disciplines, i);
-        discipline_print_statistics(d);
-    }
+    // /**
+    //  * Relatorio 11
+    //  * Informações sobre cada disciplina
+    //  * Ordenar as disciplinas pelo percentual de aprovacao
+    // */
+    // for (int i = 0; i < number_disciplines; i++) {
+    //     Discipline *d = linked_list_get(disciplines, i);
+    //     discipline_print_statistics(d);
+    // }
 
-    /**
-     * Relatorio 12
-     * Ler o codigo de uma disciplina e remover todas as menções à disciplina nas estruturas de dados
-    */
-    char discipline_code[50];
-    scanf("\n%[^\n]", discipline_code);
-    int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_compare_code);
-    if (disc_idx != -1) {
-        Discipline *d = linked_list_get(disciplines, disc_idx);
+    // /**
+    //  * Relatorio 12
+    //  * Ler o codigo de uma disciplina e remover todas as menções à disciplina nas estruturas de dados
+    // */
+    // char discipline_code[50];
+    // scanf("\n%[^\n]", discipline_code);
+    // int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_compare_code);
+    // if (disc_idx != -1) {
+    //     Discipline *d = linked_list_get(disciplines, disc_idx);
 
-        //Remover de todos os prerequisitos
-        for (int i = 0; i < number_disciplines; i++) {
-            Discipline *p = linked_list_get(disciplines, i);
-            linked_list_remove(p->prerequisites, d, discipline_destroy);
-        }
-        linked_list_remove(disciplines, d, discipline_destroy);
-    }
+    //     //Remover de todos os prerequisitos
+    //     for (int i = 0; i < number_disciplines; i++) {
+    //         Discipline *p = linked_list_get(disciplines, i);
+    //         linked_list_remove(p->prerequisites, d, discipline_destroy);
+    //     }
+    //     linked_list_remove(disciplines, d, discipline_destroy);
+    // }
 
     /**
      * Desaloca os alunos e as disciplinas
