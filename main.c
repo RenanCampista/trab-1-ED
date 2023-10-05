@@ -221,8 +221,6 @@ int main() {
     //     printf("Numero de matricula: ");
     //     student_print_registration_number(s);
     
-
-
     //     int count_approved = 0, count_registered = 0;
     //     float average_grade = 0;
     //     //Verificar a quantidade de disciplinas que o aluno foi aprovado
@@ -258,24 +256,23 @@ int main() {
     // }
 
 
-    // /**
-    //  * Relatorio 12
-    //  * Ler o codigo de uma disciplina e remover todas as menções à disciplina nas estruturas de dados
-    // */
+    //Relatorio 12 funcionando
     // data_type discipline_code[50];
     // scanf("\n%[^\n]", (char*)discipline_code);
-    // int disc_idx = linked_list_search(disciplines, discipline_code, discipline_compare_code);
+    // int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
     // if (disc_idx != -1) {
     //     Discipline *d = linked_list_get(disciplines, disc_idx);
 
     //     //Remover de todos os prerequisitos
-    //     for (int i = 0; i < number_disciplines; i++) {
+    //     for (int i = 0; i < linked_list_size(disciplines); i++) {
     //         Discipline *p = linked_list_get(disciplines, i);
     //         linked_list_remove(p->prerequisites, d, NULL);
     //     }
-    //     linked_list_remove(disciplines, d, NULL);
+    //     linked_list_remove(disciplines, d, discipline_destroy);
     // }
-
+    
+    // //Imprimir todas as disciplinas apos a remocao da disciplina
+    // linked_list_print(disciplines, discipline_print_data);
 
 
 
