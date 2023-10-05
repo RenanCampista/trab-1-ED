@@ -60,13 +60,13 @@ int registration_compare_student(Registration *r1, Registration *r2) {
 
 int registration_check_inconsistency(Registration *r) {
    if (r->approval_status == APPROVED) {
-        if (r->final_grade < 5.0 || r->presence_percentage < 75.0) 
+        if (r->final_grade < 5.0 || r->presence_percentage < 0.75) 
             return 1;
         else 
             return 0;
         
    } else {
-        if (r->final_grade >= 5.0 || r->presence_percentage >= 75.0) 
+        if (r->final_grade >= 5.0 || r->presence_percentage >= 0.75) 
             return 1;
         else 
             return 0;

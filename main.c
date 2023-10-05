@@ -181,6 +181,11 @@ int main() {
     // linked_list_print(disc_appvd, discipline_print_name);
     // linked_list_destroy_node(disc_appvd);
 
+    //Relatorio 7 funcionando
+    // for (int i = 0; i < linked_list_size(disciplines); i++) {
+    //     Discipline *d = linked_list_get(disciplines, i);
+    //     discipline_check_inconsistency(d);
+    // }
 
     //Relatorio 10 funcionando
     // for (int i = 0; i < linked_list_size(students); i++) {
