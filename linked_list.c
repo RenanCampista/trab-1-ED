@@ -24,11 +24,12 @@ void linked_list_destroy(LinkedList *l, void (*destroy_fn)(data_type)) {
 
 void linked_list_destroy_node(LinkedList *l) {
     Node *n = l->head;
+    Node *aux;
 
     while(n != NULL) {
-        l->head = n->next;
+        aux = n->next;
         free(n);
-        n = l->head;
+        n = aux;
     }
 
     free(l);
@@ -107,6 +108,7 @@ LinkedList *linked_list_reverse(LinkedList *l) {
         linked_list_push_front(r, n->data);
         n = n->next;
     }
+    linked_list_destroy_node(l);
     return r;
 }
 
@@ -117,9 +119,13 @@ void linked_list_unique(LinkedList *l, int (*cmp_fn)(data_type, data_type), void
         aux = n->next;
         while(aux != NULL) {
             if (cmp_fn(n->data, aux->data)) {
-                node_destroy(aux, destroy_fn);
                 n->next = aux->next;
+                if (destroy_fn != NULL)
+                    node_destroy(aux, destroy_fn);
+                else
+                    free(aux);
                 l->size--;
+                break;
             }
             aux = aux->next;
         }
@@ -158,3 +164,22 @@ void linked_list_sort(LinkedList *l, int (*cmp_fn)(data_type, data_type)) {
         n = n->next;
     }
 }
+
+// void linked_list_unique(LinkedList *l, int (*cmp_fn)(data_type, data_type), void (*destroy_fn)(data_type)) {
+//     Node *n = l->head;
+//     Node *aux;
+
+//     while(n != NULL) {
+//         aux = n->next;
+//         while(aux != NULL) {
+//             if (cmp_fn(n->data, aux->data)) {
+//                 if (destroy_fn != NULL)
+//                     destroy_fn(aux->data);
+//                 else
+//                     free(aux->data);
+//             }
+//             aux = aux->next;
+//         }
+//         n = n->next;
+//     }
+// }

@@ -28,4 +28,6 @@ void discipline_print_statistics(Discipline *d);
 
 int discipline_has_registration(Discipline *d, Student *s);
 
+LinkedList *discipline_get_direct_prerequisites(Discipline *d);
+void discipline_show_students(Discipline *d);
 #endif

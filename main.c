@@ -77,11 +77,29 @@ int main() {
         Student *s = linked_list_get(students, stu_idx);
         discipline_register_student(d, s);
     }
+
+    //Relatorio 1
+    char code_dsc[50];
+    scanf("\n%[^\n]", code_dsc);
+    int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);
+    Discipline *d = linked_list_get(disciplines, idx);
+    discipline_show_students(d);
+
+    //Relatorio 2 funcionando
+    // char code_dsc[50];
+    // scanf("\n%[^\n]", code_dsc);
+    // int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);
+    // Discipline *d = linked_list_get(disciplines, idx);
+    // LinkedList *prerequisites = discipline_get_direct_prerequisites(d);
+    // linked_list_print(prerequisites, discipline_print_name);
+    // linked_list_destroy_node(prerequisites);
+
+
     
     //Relatorio 4 funcionando
-    // int number_registrations_to_change = 0;
-    // scanf("\n%d", &number_registrations_to_change);
-    // int idx_r = linked_list_search(students, &number_registrations_to_change, student_verify_registration);
+    // int registration_std = 0;
+    // scanf("\n%d", &registration_std);
+    // int idx_r = linked_list_search(students, &registration_std, student_verify_registration);
     // Student *s = linked_list_get(students, idx_r);
     // LinkedList *registrations_student = linked_list_construct();
     // for (int i = 0; i < linked_list_size(disciplines); i++) {

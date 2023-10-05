@@ -94,9 +94,9 @@ void discipline_show_students(Discipline *d) {
     }
 
     //Eliminar alunos repetidos
-    linked_list_unique(students, student_compare_registration, student_destroy);
+    linked_list_unique(students, student_compare_registration, NULL);
     linked_list_print(students, student_print_name);
-    linked_list_destroy(students, student_destroy);
+    linked_list_destroy_node(students);
 }
 
 int discipline_get_number_registrations(Discipline *d) {
