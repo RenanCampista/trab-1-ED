@@ -124,8 +124,8 @@ void linked_list_unique(LinkedList *l, int (*cmp_fn)(data_type, data_type), void
                     node_destroy(aux, destroy_fn);
                 else
                     free(aux);
+                aux = n;
                 l->size--;
-                break;
             }
             aux = aux->next;
         }
