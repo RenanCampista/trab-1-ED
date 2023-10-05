@@ -116,7 +116,7 @@ int main() {
     // linked_list_print(prerequisites, discipline_print_name);
     // linked_list_destroy_node(prerequisites);
 
-    //Relatorio 3 nao ta pegando tudo
+    //Relatorio 3 funcionando
     // char code_dsc[50];
     // scanf("\n%[^\n]", code_dsc);
     // int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);

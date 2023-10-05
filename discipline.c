@@ -127,21 +127,19 @@ LinkedList *discipline_get_full_prerequisites(Discipline *d) {
     //Relatorio 3
     LinkedList *prerequisites = linked_list_construct();
 
+    // Adiciona os pré-requisitos diretos
     for (int i = 0; i < linked_list_size(d->prerequisites); i++) {
         Discipline *p = linked_list_get(d->prerequisites, i);
         linked_list_push_front(prerequisites, p);
-        //Pegar os pre requisitos dessa disciplina
-        LinkedList *aux = discipline_get_direct_prerequisites(p);
-
-        //Adicionar os pre requisitos dessa disciplina na lista de pre requisitos
-        for (int j = 0; j < linked_list_size(aux); j++) {
-            Discipline *p2 = linked_list_get(aux, j);
-            linked_list_push_front(prerequisites, p2);
-        }
+        // Adiciona os pré-requisitos indiretos atraves de recusao
+        LinkedList *aux = discipline_get_full_prerequisites(p);
+        linked_list_concat(prerequisites, aux);
+        linked_list_destroy(aux, NULL);
     }
 
-    //Eliminar disciplinas repetidas
+    // Remove disciplinas repetidas
     linked_list_unique(prerequisites, discipline_compare_code, NULL);
+
     return prerequisites;
 }
 

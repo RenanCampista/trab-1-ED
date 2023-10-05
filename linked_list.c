@@ -213,3 +213,18 @@ void linked_list_print_pair(LinkedList *l1, LinkedList *l2, void (*print_fn_1)(d
         n2 = n2->next;
     }
 }
+
+void linked_list_concat(LinkedList *l1, LinkedList *l2) {
+    if (l1->head == NULL) {
+        l1->head = l2->head;
+    } else {
+        Node *n = l1->head;
+        while (n->next != NULL) {
+            n = n->next;
+        }
+        n->next = l2->head;
+    }
+    l1->size += l2->size;
+    l2->head = NULL;
+    l2->size = 0;
+}
