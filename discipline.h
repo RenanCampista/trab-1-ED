@@ -20,6 +20,7 @@ void discipline_register_student(Discipline *d, Student *s);
 int discipline_verify_code(data_type data, data_type target_code);
 int discipline_compare_code(data_type data1, data_type data2);
 int discipline_compare_name(data_type data1, data_type data2);
+int discipline_compare_approval_percentage(data_type data1, data_type data2);
 void discipline_add_prerequisite(Discipline *d, Discipline *p);
 void discipline_print_name(data_type data);
 void discipline_print_data(data_type data);

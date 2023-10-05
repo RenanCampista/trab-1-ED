@@ -287,13 +287,23 @@ float discipline_get_approval_percentage(Discipline *d) {
     return (float)approved / linked_list_size(d->registrations);
 }
 
+//Fazer uma função para comparar 2 disciplinas o percentual de aprovaçao
+int discipline_compare_approval_percentage(data_type data1, data_type data2) {
+    Discipline *d1 = (Discipline *)data1;
+    Discipline *d2 = (Discipline *)data2;
+    float percentage1 = discipline_get_approval_percentage(d1);
+    float percentage2 = discipline_get_approval_percentage(d2);
+    return percentage1 > percentage2;
+}
+
 void discipline_print_statistics(Discipline *d) {
     //Relatório 11
+    printf("Codigo da disciplina: ");
     discipline_print_code(d);
-    printf(";");
+    printf("\nNome da disciplina: ");
     discipline_print_name(d);
     //Num aprovacoes
-    printf("%d;", discipline_get_number_approved(d));
+    printf("Numero de aprovacoes: %d\n", discipline_get_number_approved(d));
     //Media das notas
-    printf("%.2f;", discipline_get_average_grade(d));
+    printf("Media das notas: %.2f\n\n", discipline_get_average_grade(d));
 }

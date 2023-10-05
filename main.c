@@ -168,11 +168,9 @@ int main() {
 
     // }
 
-    // /**
-    //  * Relatorio 11
-    //  * Informações sobre cada disciplina
-    //  * Ordenar as disciplinas pelo percentual de aprovacao
-    // */
+
+    //Relatorio 11 funcionando
+    // linked_list_sort(disciplines, discipline_compare_approval_percentage);
     // for (int i = 0; i < number_disciplines; i++) {
     //     Discipline *d = linked_list_get(disciplines, i);
     //     discipline_print_statistics(d);
@@ -195,6 +193,10 @@ int main() {
     //     }
     //     linked_list_remove(disciplines, d, discipline_destroy);
     // }
+
+
+
+
 
     /**
      * Desaloca os alunos e as disciplinas
