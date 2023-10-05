@@ -25,7 +25,7 @@ void int_print(data_type data) {
 
 void string_print(data_type data) {
     char *s = (char*)data;
-    printf("%s: ", s);
+    printf("%sa: ", s);
 }
 
 int main() {
@@ -116,6 +116,14 @@ int main() {
     // linked_list_print(prerequisites, discipline_print_name);
     // linked_list_destroy_node(prerequisites);
 
+    //Relatorio 3 nao ta pegando tudo
+    // char code_dsc[50];
+    // scanf("\n%[^\n]", code_dsc);
+    // int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);
+    // Discipline *d = linked_list_get(disciplines, idx);
+    // LinkedList *full_prerequisites = discipline_get_full_prerequisites(d);
+    // linked_list_print(full_prerequisites, discipline_print_name);
+    // linked_list_destroy_node(full_prerequisites);
 
     //Relatorio 4 funcionando
     // int registration_std = 0;
@@ -140,7 +148,8 @@ int main() {
     // LinkedList *teachers = linked_list_construct();
     // for (int i = 0; i < linked_list_size(disciplines); i++) {
     //     Discipline *d = linked_list_get(disciplines, i);
-    //     char *teacher = discipline_get_teacher(d);
+    //     data_type teacher[50];
+    //     strcpy((char*)teacher, discipline_get_teacher(d));
     //     linked_list_push_front(teachers, teacher);
     // }
     // linked_list_unique(teachers, string_compare, NULL);
@@ -162,6 +171,7 @@ int main() {
     // linked_list_sort_pair(disapprovals, teachers, int_compare);
     // printf("aqui\n");
     // linked_list_print_pair(teachers, disapprovals, string_print, int_print);
+    
     // linked_list_destroy_node(disapprovals);
     // linked_list_destroy_node(teachers);
 

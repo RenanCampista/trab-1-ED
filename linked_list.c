@@ -201,18 +201,6 @@ void linked_list_sort_pair(LinkedList *princp, LinkedList *sec,int (*cmp_fn)(dat
     }
 }
 
-/*
-
-void linked_list_print(LinkedList *l, void (*print_fn)(data_type)) {
-    Node *n = l->head;
-
-    while(n != NULL) {
-        print_fn(n->data);
-        n = n->next;
-    }
-}
-*/
-
 void linked_list_print_pair(LinkedList *l1, LinkedList *l2, void (*print_fn_1)(data_type),  void (*print_fn_2)(data_type)) {
     Node *n1 = l1->head;
     Node *n2 = l2->head;

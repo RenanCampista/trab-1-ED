@@ -141,7 +141,7 @@ LinkedList *discipline_get_full_prerequisites(Discipline *d) {
     }
 
     //Eliminar disciplinas repetidas
-    linked_list_unique(prerequisites, discipline_compare_code, discipline_destroy);
+    linked_list_unique(prerequisites, discipline_compare_code, NULL);
     return prerequisites;
 }
 
