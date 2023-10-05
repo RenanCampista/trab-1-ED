@@ -158,13 +158,20 @@ int discipline_has_registration(Discipline *d, Student *s) {
     //Lembrar de retirar possiveis repeticoes e exibir no final.
 }
 
-int discipline_get_disapprovals_by_teacher(Discipline *d) {
+int discipline_get_disapprovals(Discipline *d) {
     //Relatorio 5 (Reprovacoes por professor)
     /**
      * Para esse relatorio, fazer uma busca na lista de matriculas com o nome do professor e contabilizar o numero de reprovacoes
      * Bem provavel que eu tenha que criar uma lista para armazenar o nome do professor de o numero de matriculas
      * Nao sei ainda como salvar o professor e o numero de reprovacoes por ele
     */
+
+   /*
+    Ordenar duas listas juntas, passar uma função de comparar a quantidade de reprovação.
+    Criar uma lista para armazenar o nome do professor
+    Criar uma lista para salvar o numero de reprovações
+   
+   */
     int disapprovals = 0;
 
     for (int i = 0; i < linked_list_size(d->registrations); i++) {
@@ -174,6 +181,10 @@ int discipline_get_disapprovals_by_teacher(Discipline *d) {
     }
 
     return disapprovals;
+}
+
+char *discipline_get_teacher(Discipline *d) {
+    return d->teacher;
 }
 
 int discipline_is_approved(Discipline *d, Student *s) {

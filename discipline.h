@@ -34,4 +34,8 @@ LinkedList *discipline_get_direct_prerequisites(Discipline *d);
 void discipline_show_students(Discipline *d);
 int discipline_is_approved(Discipline *d, Student *s);
 
+
+int discipline_get_disapprovals(Discipline *d);
+char *discipline_get_teacher(Discipline *d);
+
 #endif

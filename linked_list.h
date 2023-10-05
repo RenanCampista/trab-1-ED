@@ -22,5 +22,6 @@ void linked_list_unique(LinkedList *l, int (*cmp_fn)(data_type, data_type), void
 int linked_list_search(LinkedList *l, data_type data, int (*cmp_fn)(data_type, data_type));
 void linked_list_sort(LinkedList *l, int (*cmp_fn)(data_type, data_type));
 void linked_list_destroy_node(LinkedList *l);
-
+void linked_list_sort_pair(LinkedList *princp, LinkedList *sec,int (*cmp_fn)(data_type, data_type));
+void linked_list_print_pair(LinkedList *l1, LinkedList *l2, void (*print_fn_1)(data_type),  void (*print_fn_2)(data_type));
 #endif

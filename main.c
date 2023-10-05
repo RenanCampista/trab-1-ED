@@ -1,10 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "linked_list.h"
 #include "discipline.h"
 #include "registration.h"
 #include "student.h"
 
+int string_compare(data_type data1, data_type data2) {
+    char *s1 = (char*)data1;
+    char *s2 = (char*)data2;
+    return strcmp(s1, s2);
+}
+
+int int_compare(data_type data1, data_type data2) {
+    int *i1 = (int*)data1;
+    int *i2 = (int*)data2;
+    return *i1 - *i2;
+}
+
+void int_print(data_type data) {
+    int *i = (int*)data;
+    printf("%d", *i);
+}
+
+void string_print(data_type data) {
+    char *s = (char*)data;
+    printf("%s: ", s);
+}
 
 int main() {
     int number_students = 0, number_disciplines = 0, number_registrations = 0, number_prerequisites = 0;
@@ -114,6 +136,34 @@ int main() {
     // linked_list_destroy_node(registrations_student);
 
 
+    //Relatorio 5 ta com problema
+    // LinkedList *teachers = linked_list_construct();
+    // for (int i = 0; i < linked_list_size(disciplines); i++) {
+    //     Discipline *d = linked_list_get(disciplines, i);
+    //     char *teacher = discipline_get_teacher(d);
+    //     linked_list_push_front(teachers, teacher);
+    // }
+    // linked_list_unique(teachers, string_compare, NULL);
+
+    // LinkedList *disapprovals = linked_list_construct();
+    // for (int i = 0; i < linked_list_size(teachers); i++) {
+    //     char *teacher = linked_list_get(teachers, i);
+    //     int count = 0;
+    //     for (int j = 0; j < linked_list_size(disciplines); j++) {
+    //         Discipline *d = linked_list_get(disciplines, j);
+    //         if (strcmp(teacher, discipline_get_teacher(d)) == 0) {
+    //             count += discipline_get_disapprovals(d);
+    //         }
+    //     }
+    //     linked_list_push_front(disapprovals, &count);
+    // }
+
+    // //Ordenar as duas listas de acordo com o número de disapprovals
+    // linked_list_sort_pair(disapprovals, teachers, int_compare);
+    // printf("aqui\n");
+    // linked_list_print_pair(teachers, disapprovals, string_print, int_print);
+    // linked_list_destroy_node(disapprovals);
+    // linked_list_destroy_node(teachers);
 
     //Relatorio 6 funcionando
     // int registration_std = 0;
@@ -176,22 +226,23 @@ int main() {
     //     discipline_print_statistics(d);
     // }
 
+
     // /**
     //  * Relatorio 12
     //  * Ler o codigo de uma disciplina e remover todas as menções à disciplina nas estruturas de dados
     // */
-    // char discipline_code[50];
-    // scanf("\n%[^\n]", discipline_code);
-    // int disc_idx = linked_list_search(disciplines, &discipline_code, discipline_compare_code);
+    // data_type discipline_code[50];
+    // scanf("\n%[^\n]", (char*)discipline_code);
+    // int disc_idx = linked_list_search(disciplines, discipline_code, discipline_compare_code);
     // if (disc_idx != -1) {
     //     Discipline *d = linked_list_get(disciplines, disc_idx);
 
     //     //Remover de todos os prerequisitos
     //     for (int i = 0; i < number_disciplines; i++) {
     //         Discipline *p = linked_list_get(disciplines, i);
-    //         linked_list_remove(p->prerequisites, d, discipline_destroy);
+    //         linked_list_remove(p->prerequisites, d, NULL);
     //     }
-    //     linked_list_remove(disciplines, d, discipline_destroy);
+    //     linked_list_remove(disciplines, d, NULL);
     // }
 
 
