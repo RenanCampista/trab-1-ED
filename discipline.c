@@ -220,25 +220,26 @@ int discipline_check_prerequisites(Discipline *d) {
     //Relatorio 8
     //Verificar se os alunos da disciplina cursaram os pre requisitos e retornar o total de alunos que nao cursaram os pre requisitos se houver
     int total = 0, aux = 0;
+    LinkedList *prerequisites = linked_list_construct();
 
     for (int i = 0; i < linked_list_size(d->registrations); i++) {
         Registration *r = linked_list_get(d->registrations, i);
-        //Student *s = registration_get_student(r);
-        LinkedList *prerequisites = discipline_get_full_prerequisites(d);
+        LinkedList *aux_list = discipline_get_direct_prerequisites(d);
+        linked_list_concat(prerequisites, aux_list);
+        linked_list_destroy(aux_list, NULL);
 
         aux = 0;
         for (int j = 0; j < linked_list_size(prerequisites); j++) {
             Discipline *p = linked_list_get(prerequisites, j);
             Student *s = registration_get_student(r);
-            if (!discipline_has_registration(p, s)) {
+            if (!discipline_has_registration(p, s))
                 aux = 1;
-
-            }
+            
         }
         if (aux == 1)
             total++;
     }
-
+    linked_list_destroy_node(prerequisites);
     return total;
 }
 

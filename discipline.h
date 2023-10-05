@@ -39,5 +39,6 @@ void discipline_check_inconsistency(Discipline *d);
 int discipline_get_disapprovals(Discipline *d);
 char *discipline_get_teacher(Discipline *d);
 LinkedList *discipline_get_full_prerequisites(Discipline *d);
+int discipline_check_prerequisites(Discipline *d);
 
 #endif

@@ -197,6 +197,15 @@ int main() {
     //     discipline_check_inconsistency(d);
     // }
 
+    //Relatorio 8 funcionando
+    // int count_prerequisites_nr = 0;
+    // for (int i = 0; i < linked_list_size(disciplines); i++) {
+    //     Discipline *d = linked_list_get(disciplines, i);
+    //     count_prerequisites_nr += discipline_check_prerequisites(d);
+    // }
+    // printf("Total de ocorrencias com pre requisitos nao cursados: %d\n", count_prerequisites_nr);
+
+
     //Relatorio 10 funcionando
     // for (int i = 0; i < linked_list_size(students); i++) {
     //     Student *s = linked_list_get(students, i);
