@@ -247,11 +247,14 @@ int discipline_check_prerequisites_disapproved(Discipline *d) {
     //Relatorio 9
     //Alunos que cursaram os pre requisitos mas foram reprovados
     int total = 0, aux = 0;
+    LinkedList *prerequisites = linked_list_construct();
 
     for (int i = 0; i < linked_list_size(d->registrations); i++) {
         Registration *r = linked_list_get(d->registrations, i);
-        //Student *s = registration_get_student(r);
-        LinkedList *prerequisites = discipline_get_full_prerequisites(d);
+
+        LinkedList *aux_list = discipline_get_full_prerequisites(d);
+        linked_list_concat(prerequisites, aux_list);
+        linked_list_destroy(aux_list, NULL);
 
         aux = 0;
         for (int j = 0; j < linked_list_size(prerequisites); j++) {
@@ -266,6 +269,7 @@ int discipline_check_prerequisites_disapproved(Discipline *d) {
         if (aux == 1)
             total++;
     }
+    linked_list_destroy_node(prerequisites);
     return total;
 }
 

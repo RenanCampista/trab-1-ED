@@ -205,6 +205,13 @@ int main() {
     // }
     // printf("Total de ocorrencias com pre requisitos nao cursados: %d\n", count_prerequisites_nr);
 
+    //Relatorio 9 funcionando
+    // int count_prerequisites_disapproved = 0;
+    // for (int i = 0; i < linked_list_size(disciplines); i++) {
+    //     Discipline *d = linked_list_get(disciplines, i);
+    //     count_prerequisites_disapproved += discipline_check_prerequisites_disapproved(d);
+    // }
+    // printf("Total de ocorrencias com pre requisitos nao aprovados: %d\n", count_prerequisites_disapproved);
 
     //Relatorio 10 funcionando
     // for (int i = 0; i < linked_list_size(students); i++) {
