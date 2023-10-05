@@ -132,14 +132,14 @@ int main() {
     // linked_list_destroy_node(disc_appvd);
 
 
-    /**
-     * Relatorio 10
-     * Obter o numero de disciplinas que o aluno cursou
-    */
-    // for (int i = 0; i < number_students; i++) {
+    //Relatorio 10 funcionando
+    // for (int i = 0; i < linked_list_size(students); i++) {
     //     Student *s = linked_list_get(students, i);
+    //     printf("Nome: ");
     //     student_print_name(s);
+    //     printf("Numero de matricula: ");
     //     student_print_registration_number(s);
+    
 
 
     //     int count_approved = 0, count_registered = 0;
@@ -161,8 +161,11 @@ int main() {
     //         }
     //     }
     //     average_grade /= count_registered;
-    //     printf(";%d;%.2f\n", count_approved, average_grade);
-        
+    //     printf("\nTotal disciplinas aprovadas: %d\n", count_approved);
+    //     printf("Total disciplinas cursadas: %d\n", count_registered);
+    //     printf("Nota media nas disciplinas: %.2f\n", average_grade);
+    //     printf("\n");
+
     // }
 
     // /**
