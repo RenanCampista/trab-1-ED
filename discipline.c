@@ -44,6 +44,12 @@ int discipline_compare_code(data_type data1, data_type data2) {
     return strcmp(d1->code, d2->code) == 0;
 }
 
+int discipline_compare_name(data_type data1, data_type data2) {
+    Discipline *d1 = (Discipline *)data1;
+    Discipline *d2 = (Discipline *)data2;
+    return strcmp(d1->name, d2->name);
+}
+
 void discipline_add_prerequisite(Discipline *d, Discipline *p) {
     linked_list_push_front(d->prerequisites, p);
 }
@@ -170,10 +176,11 @@ int discipline_get_disapprovals_by_teacher(Discipline *d) {
     return disapprovals;
 }
 
-int discipline_is_approved(Discipline *d, int registration_number) {
+int discipline_is_approved(Discipline *d, Student *s) {
     //Relatorio 6
     //Buscar o aluno na lista de matriculas. Retornar 1 se aprovado e 0 se reprovado
-    int idx = linked_list_search(d->registrations, &registration_number, student_compare_registration);
+
+    int idx = linked_list_search(d->registrations, s, registration_verify_student);
     if (idx == -1)
         return 0;
 
@@ -241,7 +248,7 @@ int discipline_check_prerequisites_disapproved(Discipline *d) {
             Discipline *p = linked_list_get(prerequisites, j);
             Student *s = registration_get_student(r);
             if (discipline_has_registration(p, s)) {
-                if (!discipline_is_approved(p, registration_get_registration_number(r))) {
+                if (!discipline_is_approved(p, s)) {
                     aux = 1;
                 }
             }
