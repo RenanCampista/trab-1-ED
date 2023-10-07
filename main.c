@@ -7,8 +7,8 @@
 #include "student.h"
 
 int string_compare(data_type data1, data_type data2) {
-    char *s1 = (char*)data1;
-    char *s2 = (char*)data2;
+    char *s1 = ( char*)data1;
+    char *s2 = ( char*)data2;
     return strcmp(s1, s2);
 }
 
@@ -145,35 +145,35 @@ int main() {
 
 
     //Relatorio 5 ta com problema
-    // LinkedList *teachers = linked_list_construct();
-    // for (int i = 0; i < linked_list_size(disciplines); i++) {
-    //     Discipline *d = linked_list_get(disciplines, i);
-    //     data_type teacher[50];
-    //     strcpy((char*)teacher, discipline_get_teacher(d));
-    //     linked_list_push_front(teachers, teacher);
-    // }
-    // linked_list_unique(teachers, string_compare, NULL);
+//     LinkedList *teachers = linked_list_construct();
+//     for (int i = 0; i < linked_list_size(disciplines); i++) {
+//         Discipline *d = linked_list_get(disciplines, i);
+//         char *teacher = discipline_get_teacher(d);
+//         linked_list_push_front(teachers, teacher);
+//     }
+//      linked_list_print(teachers, NULL); 
+//     linked_list_unique(teachers, string_compare, NULL);
 
-    // LinkedList *disapprovals = linked_list_construct();
-    // for (int i = 0; i < linked_list_size(teachers); i++) {
-    //     char *teacher = linked_list_get(teachers, i);
-    //     int count = 0;
-    //     for (int j = 0; j < linked_list_size(disciplines); j++) {
-    //         Discipline *d = linked_list_get(disciplines, j);
-    //         if (strcmp(teacher, discipline_get_teacher(d)) == 0) {
-    //             count += discipline_get_disapprovals(d);
-    //         }
-    //     }
-    //     linked_list_push_front(disapprovals, &count);
-    // }
+//     LinkedList *disapprovals = linked_list_construct();
+//     for (int i = 0; i < linked_list_size(teachers); i++) {
+//         const char *teacher = linked_list_get(teachers, i);
+//         int count = 0;
+//         for (int j = 0; j < linked_list_size(disciplines); j++) {
+//             Discipline *d = linked_list_get(disciplines, j);
+//             if (strcmp(teacher, discipline_get_teacher(d)) == 0) {
+//                 count += discipline_get_disapprovals(d);
+//             }
+//         }
+//         linked_list_push_front(disapprovals, &count);
+//     }
 
-    // //Ordenar as duas listas de acordo com o número de disapprovals
-    // linked_list_sort_pair(disapprovals, teachers, int_compare);
-    // printf("aqui\n");
-    // linked_list_print_pair(teachers, disapprovals, string_print, int_print);
-    
-    // linked_list_destroy_node(disapprovals);
-    // linked_list_destroy_node(teachers);
+//     //Ordenar as duas listas de acordo com o número de disapprovals
+//   //  linked_list_sort_pair(disapprovals, teachers, int_compare);
+//     printf("aqui\n");
+// //    linked_list_print_pair(teachers, disapprovals, string_print, int_print);
+  
+//     linked_list_destroy_node(disapprovals);
+//     linked_list_destroy_node(teachers);
 
     //Relatorio 6 funcionando
     // int registration_std = 0;

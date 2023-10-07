@@ -75,7 +75,10 @@ void linked_list_print(LinkedList *l, void (*print_fn)(data_type)) {
     Node *n = l->head;
 
     while(n != NULL) {
-        print_fn(n->data);
+        if (print_fn != NULL)
+            print_fn(n->data);
+        else
+            printf("%s ", (char*)n->data);
         n = n->next;
     }
 }
