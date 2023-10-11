@@ -22,8 +22,8 @@ void discipline_destroy(data_type data) {
     }
 }
 
-void discipline_read(Discipline *d) {
-    scanf("\n%[^;];%[^;];%[^\n]", d->name, d->code, d->teacher);
+void discipline_read(Discipline *d, FILE *f) {
+    fscanf(f, "\n%[^;];%[^;];%[^\n]", d->name, d->code, d->teacher);
 }
 
 void discipline_register_student(Discipline *d, Student *s) {

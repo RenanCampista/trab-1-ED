@@ -26,7 +26,7 @@ int main() {
     */
     for (int i = 0; i < number_students; i++) {
         Student *s = student_construct();
-        student_read(s);
+        student_read(s, f);
         linked_list_push_front(students, s);
     }
 
@@ -37,7 +37,7 @@ int main() {
     */
     for (int i = 0; i < number_disciplines; i++) {
         Discipline *d = discipline_construct();
-        discipline_read(d);
+        discipline_read(d, f);
         linked_list_push_front(disciplines, d);
     }
 

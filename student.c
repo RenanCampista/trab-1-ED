@@ -16,8 +16,8 @@ void student_destroy(data_type data) {
     free(s);
 }
 
-void student_read(Student *s) {
-    scanf("\n%[^;];%d;%[^\n]", s->name, &s->registration_number, s->email);
+void student_read(Student *s, FILE *f) {
+    fscanf(f, "\n%[^;];%d;%[^\n]", s->name, &s->registration_number, s->email);
 }
 
 int student_verify_registration(data_type data, data_type target_code) {
