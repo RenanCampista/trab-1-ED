@@ -12,7 +12,15 @@ int main() {
     LinkedList *students = linked_list_construct();
     LinkedList *disciplines = linked_list_construct();
 
-    scanf("\n%d", &number_students);
+    char file_name[100];
+    scanf("%[^\n]", file_name);
+
+    FILE *f = fopen(file_name, "r");
+    if (f == NULL)
+        exit(printf("Erro ao abrir o arquivo"));
+
+    //scanf("\n%d", &number_students);
+    fscanf(f, "\n%d", &number_students);
     /**
      * Lê os dados dos alunos e os insere na lista de alunos
     */
@@ -22,7 +30,8 @@ int main() {
         linked_list_push_front(students, s);
     }
 
-    scanf("\n%d", &number_disciplines);
+    //scanf("\n%d", &number_disciplines);
+    fscanf(f, "\n%d", &number_disciplines);
     /**
      * Lê os dados das disciplinas e os insere na lista de disciplinas
     */
@@ -32,7 +41,8 @@ int main() {
         linked_list_push_front(disciplines, d);
     }
 
-    scanf("\n%d", &number_prerequisites);
+    //scanf("\n%d", &number_prerequisites);
+    fscanf(f, "\n%d", &number_prerequisites);
     /**
      * Busca a disciplina pelo código e a pré-requisito pelo código
      * Em seguida, adiciona a pré-requisito na lista de pré-requisitos da disciplina
@@ -40,7 +50,7 @@ int main() {
     for (int i = 0; i < number_prerequisites; i++) {
         data_type discipline_code[50], prerequisite_code[50];
 
-        scanf("\n%50[^;];%s", (char*)discipline_code, (char*)prerequisite_code);
+        fscanf(f, "\n%50[^;];%s", (char*)discipline_code, (char*)prerequisite_code);
 
         int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
         int pre_idx = linked_list_search(disciplines, prerequisite_code, discipline_verify_code);
@@ -54,7 +64,8 @@ int main() {
     }
 
 
-    scanf("\n%d", &number_registrations);
+    //scanf("\n%d", &number_registrations);
+    fscanf(f, "\n%d", &number_registrations);
     /**
      * Busca a disciplina pelo código e o aluno pelo número de matrícula
      * Em seguida, registra o aluno em uma das disciplinas da lista
@@ -63,7 +74,7 @@ int main() {
         data_type discipline_code[50];
         int registration_number;
 
-        scanf("\n%50[^;];%d;", (char*)discipline_code, &registration_number);
+        fscanf(f, "\n%50[^;];%d;", (char*)discipline_code, &registration_number);
 
         int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
         int stu_idx = linked_list_search(students, &registration_number, student_verify_registration);
@@ -71,7 +82,7 @@ int main() {
         if (disc_idx == -1 || stu_idx == -1) {
             //limpar a linha
             char line[100];
-            scanf("%[^\n]", line);
+            fscanf(f, "%[^\n]", line);
             continue;
         }
         Discipline *d = linked_list_get(disciplines, disc_idx);
@@ -79,18 +90,36 @@ int main() {
         discipline_register_student(d, s);
     }
 
-    report_1(disciplines);
-    report_2(disciplines);
-    report_3(disciplines);
-    report_4(disciplines, students);
-    report_5(disciplines);
-    report_6(disciplines, students);
-    report_7(disciplines);
-    report_8(disciplines);
-    report_9(disciplines);
-    report_10(disciplines, students);
-    report_11(disciplines);
-    report_12(disciplines);
+    fclose(f);
+
+    int report_number;
+    scanf("\n%d", &report_number);
+    if(report_number == 1)
+        report_1(disciplines);
+    else if(report_number == 2)
+        report_2(disciplines);
+    else if(report_number == 3)
+        report_3(disciplines);
+    else if(report_number == 4)
+        report_4(disciplines, students);
+    else if(report_number == 5)
+        report_5(disciplines);
+    else if(report_number == 6)
+        report_6(disciplines, students);
+    else if(report_number == 7)
+        report_7(disciplines);
+    else if(report_number == 8)
+        report_8(disciplines);
+    else if(report_number == 9)
+        report_9(disciplines);
+    else if(report_number == 10)
+        report_10(disciplines, students);
+    else if(report_number == 11)
+        report_11(disciplines);
+    else if(report_number == 12)
+        report_12(disciplines);
+    else
+        printf("Opcao de relatorio invalido.");
 
     linked_list_destroy(students, student_destroy);
     linked_list_destroy(disciplines, discipline_destroy);
