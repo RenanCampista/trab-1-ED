@@ -16,9 +16,9 @@ void registration_destroy(data_type data) {
     free(r);
 }
 
-void registration_read(Registration *r, Student *s) {
+void registration_read(Registration *r, Student *s, FILE *f) {
     int status;
-    scanf("%f;%f;%d ", &r->final_grade, &r->presence_percentage, &status);
+    fscanf(f, "%f;%f;%d ", &r->final_grade, &r->presence_percentage, &status);
     r->approval_status = status == 1 ? APPROVED : DISAPPROVED ;
     r->student = s;
 }

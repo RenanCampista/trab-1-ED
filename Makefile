@@ -5,4 +5,4 @@ clean:
 run:
 	./main
 valgrind:
-	valgrind --track-origins=yes --leak-check=full ./main <entrada.txt
+	valgrind --track-origins=yes --leak-check=full ./main

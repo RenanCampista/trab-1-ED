@@ -19,7 +19,7 @@ struct Registration {
 
 Registration *registration_construct();
 void registration_destroy(data_type data);
-void registration_read(Registration *r, Student *s);
+void registration_read(Registration *r, Student *s, FILE *f);
 int registration_get_status(Registration *r);
 Student *registration_get_student(data_type data);
 int registration_get_registration_number(data_type data);

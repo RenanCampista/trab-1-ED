@@ -10,31 +10,42 @@ typedef struct Teacher {
     int disapprovals;
 } Teacher;
 
-int string_compare(data_type data1, data_type data2) {
-    char *s1 = ( char*)data1;
-    char *s2 = ( char*)data2;
-    if (strcmp(s1, s2) == 0)
+Teacher *teacher_construct(char *name) {
+    Teacher *t = (Teacher*)malloc(sizeof(Teacher));
+    if (t == NULL)
+        exit(printf("Erro ao alocar memoria"));
+        
+    t->name = (char*)malloc((strlen(name) + 1) * sizeof(char));
+    strcpy(t->name, name);
+    t->disapprovals = 0;
+    return t;
+}
+
+void teacher_destroy(data_type data) {
+    Teacher *t = (Teacher*)data;
+    free(t->name);
+    free(t);
+}
+
+int teacher_compare_name(data_type data1, data_type data2) {
+    Teacher *t1 = (Teacher*)data1;
+    Teacher *t2 = (Teacher*)data2;
+    if (strcmp(t1->name, t2->name) == 0)
         return 1;
-    else
-        return 0;
+    return 0;
 }
 
-int int_compare(data_type data1, data_type data2) {
-    int *i1 = (int*)data1;
-    int *i2 = (int*)data2;
-    return *i1 - *i2;
+int teacher_compare_disapprovals(data_type data1, data_type data2) {
+    Teacher *t1 = (Teacher*)data1;
+    Teacher *t2 = (Teacher*)data2;
+    return t1->disapprovals - t2->disapprovals;
 }
 
-void int_print(data_type data) {
-    int *i = (int*)data;
-    printf("%d", *i);
+void teacher_print(data_type data) {
+    Teacher *t = (Teacher*)data;
+    printf("%s: %d\n", t->name, t->disapprovals);
 }
-
-void string_print(data_type data) {
-    char *s = (char*)data;
-    printf("%s: ", s);
-}
-
+ 
 void report_1(LinkedList *disciplines) {
     char code_dsc[50];
     scanf("\n%[^\n]", code_dsc);
@@ -87,31 +98,25 @@ void report_5(LinkedList *disciplines) {
     for (int i = 0; i < linked_list_size(disciplines); i++) {
         Discipline *d = linked_list_get(disciplines, i);
         char *teacher = discipline_get_teacher(d);
-        linked_list_push_front(teachers, teacher);
+        Teacher *t = teacher_construct(teacher);
+        linked_list_push_front(teachers, t);
     }
+    linked_list_unique(teachers, teacher_compare_name, teacher_destroy);
 
-    linked_list_unique(teachers, string_compare, NULL);
-
-    LinkedList *disapprovals = linked_list_construct();
     for (int i = 0; i < linked_list_size(teachers); i++) {
-        char *teacher = linked_list_get(teachers, i);
-        int *count = (int*)calloc(1, sizeof(int));
+        Teacher *t = linked_list_get(teachers, i);
         for (int j = 0; j < linked_list_size(disciplines); j++) {
             Discipline *d = linked_list_get(disciplines, j);
-            if (strcmp(teacher, discipline_get_teacher(d)) == 0) {
-                *count += discipline_get_disapprovals(d);
+            if (strcmp(t->name, discipline_get_teacher(d)) == 0) {
+                t->disapprovals += discipline_get_disapprovals(d);
             }
         }
-        linked_list_push_front(disapprovals, count);
-        //free(count);
     }
 
-    //Ordenar as duas listas de acordo com o número de disapprovals
-    //linked_list_sort_pair(disapprovals, teachers, int_compare);
-    linked_list_print_pair(teachers, disapprovals, string_print, int_print);
-  
-    linked_list_destroy(disapprovals, free);
-    linked_list_destroy_node(teachers);
+    linked_list_sort(teachers, teacher_compare_disapprovals);
+    linked_list_print(teachers, teacher_print);
+    linked_list_destroy(teachers, teacher_destroy);
+
 }
 
 void report_6(LinkedList *disciplines, LinkedList *students) {

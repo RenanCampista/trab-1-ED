@@ -13,13 +13,14 @@ int main() {
     LinkedList *disciplines = linked_list_construct();
 
     char file_name[100];
+    printf("Digite o nome do arquivo: ");
     scanf("%[^\n]", file_name);
 
     FILE *f = fopen(file_name, "r");
     if (f == NULL)
         exit(printf("Erro ao abrir o arquivo"));
 
-    //scanf("\n%d", &number_students);
+
     fscanf(f, "\n%d", &number_students);
     /**
      * Lê os dados dos alunos e os insere na lista de alunos
@@ -30,7 +31,7 @@ int main() {
         linked_list_push_front(students, s);
     }
 
-    //scanf("\n%d", &number_disciplines);
+
     fscanf(f, "\n%d", &number_disciplines);
     /**
      * Lê os dados das disciplinas e os insere na lista de disciplinas
@@ -41,7 +42,7 @@ int main() {
         linked_list_push_front(disciplines, d);
     }
 
-    //scanf("\n%d", &number_prerequisites);
+
     fscanf(f, "\n%d", &number_prerequisites);
     /**
      * Busca a disciplina pelo código e a pré-requisito pelo código
@@ -64,7 +65,7 @@ int main() {
     }
 
 
-    //scanf("\n%d", &number_registrations);
+
     fscanf(f, "\n%d", &number_registrations);
     /**
      * Busca a disciplina pelo código e o aluno pelo número de matrícula
@@ -87,12 +88,13 @@ int main() {
         }
         Discipline *d = linked_list_get(disciplines, disc_idx);
         Student *s = linked_list_get(students, stu_idx);
-        discipline_register_student(d, s);
+        discipline_register_student(d, s, f);
     }
 
     fclose(f);
 
     int report_number;
+    printf("Digite o numero do relatorio: ");
     scanf("\n%d", &report_number);
     if(report_number == 1)
         report_1(disciplines);

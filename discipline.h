@@ -16,7 +16,7 @@ struct Discipline {
 Discipline *discipline_construct();
 void discipline_destroy(data_type data);
 void discipline_read(Discipline *d, FILE *f);
-void discipline_register_student(Discipline *d, Student *s);
+void discipline_register_student(Discipline *d, Student *s, FILE *f);
 int discipline_verify_code(data_type data, data_type target_code);
 int discipline_compare_code(data_type data1, data_type data2);
 int discipline_compare_name(data_type data1, data_type data2);

@@ -26,9 +26,9 @@ void discipline_read(Discipline *d, FILE *f) {
     fscanf(f, "\n%[^;];%[^;];%[^\n]", d->name, d->code, d->teacher);
 }
 
-void discipline_register_student(Discipline *d, Student *s) {
+void discipline_register_student(Discipline *d, Student *s, FILE *f) {
     Registration *r = registration_construct();
-    registration_read(r, s);
+    registration_read(r, s, f);
     linked_list_push_front(d->registrations, r);
 }
 
@@ -152,19 +152,6 @@ int discipline_has_registration(Discipline *d, Student *s) {
 }
 
 int discipline_get_disapprovals(Discipline *d) {
-    //Relatorio 5 (Reprovacoes por professor)
-    /**
-     * Para esse relatorio, fazer uma busca na lista de matriculas com o nome do professor e contabilizar o numero de reprovacoes
-     * Bem provavel que eu tenha que criar uma lista para armazenar o nome do professor de o numero de matriculas
-     * Nao sei ainda como salvar o professor e o numero de reprovacoes por ele
-    */
-
-   /*
-    Ordenar duas listas juntas, passar uma função de comparar a quantidade de reprovação.
-    Criar uma lista para armazenar o nome do professor
-    Criar uma lista para salvar o numero de reprovações
-   
-   */
     int disapprovals = 0;
 
     for (int i = 0; i < linked_list_size(d->registrations); i++) {
