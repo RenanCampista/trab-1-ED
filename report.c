@@ -5,6 +5,11 @@
 #include "registration.h"
 #include "student.h"
 
+typedef struct Teacher {
+    char *name;
+    int disapprovals;
+} Teacher;
+
 int string_compare(data_type data1, data_type data2) {
     char *s1 = ( char*)data1;
     char *s2 = ( char*)data2;
