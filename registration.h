@@ -23,6 +23,7 @@ void registration_read(Registration *r, Student *s, FILE *f);
 int registration_get_status(Registration *r);
 Student *registration_get_student(data_type data);
 int registration_get_registration_number(data_type data);
+float registration_get_presence_percentage(data_type data);
 int registration_compare_student(Registration *r1, Registration *r2);
 int registration_check_inconsistency(Registration *r);
 void registration_print(Registration *r);

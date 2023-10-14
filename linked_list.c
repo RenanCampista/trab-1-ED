@@ -54,7 +54,11 @@ void linked_list_remove(LinkedList *l, data_type value, void (*destroy_fn)(data_
 
     if (n->data == value) {
         l->head = n->next;
-        node_destroy(n, destroy_fn);
+        if (destroy_fn != NULL)
+            node_destroy(n, destroy_fn);
+        else
+            free(n);
+        //node_destroy(n, destroy_fn);
         l->size--;
         return;
     }
@@ -63,7 +67,11 @@ void linked_list_remove(LinkedList *l, data_type value, void (*destroy_fn)(data_
         if (n->next->data == value) {
             aux = n->next;
             n->next = aux->next;
-            node_destroy(aux, destroy_fn);
+            if (destroy_fn != NULL)
+                node_destroy(aux, destroy_fn);
+            else
+                free(aux);
+            //node_destroy(aux, destroy_fn);
             l->size--;
             return;
         }
@@ -165,55 +173,6 @@ void linked_list_sort(LinkedList *l, int (*cmp_fn)(data_type, data_type)) {
             aux = aux->next;
         }
         n = n->next;
-    }
-}
-
-void linked_list_sort_pair(LinkedList *princp, LinkedList *sec,int (*cmp_fn)(data_type, data_type)) {
-    //princp é a lista que vai ser ordenada (reprovacoes)
-    //sec é a lista que vai ser ordenada baseada na outra (nome professores)
-    
-    Node *n_pric = princp->head;
-    Node *aux_princ;
-    data_type data_aux_princ;
-
-    Node *n_sec = sec->head;
-    Node *aux_sec;
-    data_type data_aux_sec;
-
-    while(n_pric != NULL && n_sec != NULL) {
-        aux_princ = n_pric->next;
-        aux_sec = n_sec->next;
-
-        while(aux_princ != NULL && aux_sec != NULL) {
-            if (cmp_fn(n_pric->data, aux_princ->data)) {
-                data_aux_princ = n_pric->data;
-                n_pric->data = aux_princ->data;
-                aux_princ->data = data_aux_princ;
-
-                data_aux_sec = n_sec->data;
-                n_sec->data = aux_sec->data;
-                aux_sec->data = data_aux_sec;
-            }
-            aux_princ = aux_princ->next;
-            
-            aux_sec = aux_sec->next;
-        }
-        n_pric = n_pric->next;
-
-        n_sec = n_sec->next;
-    }
-}
-
-void linked_list_print_pair(LinkedList *l1, LinkedList *l2, void (*print_fn_1)(data_type),  void (*print_fn_2)(data_type)) {
-    Node *n1 = l1->head;
-    Node *n2 = l2->head;
-
-    while(n1 != NULL) {
-        print_fn_1(n1->data);
-        n1 = n1->next;
-
-        print_fn_2(n2->data);
-        n2 = n2->next;
     }
 }
 

@@ -84,6 +84,11 @@ void discipline_print_data(data_type data) {
 
 }
 
+void discipline_print_name_and_teacher(data_type data) {
+    Discipline *d = (Discipline *)data;
+    printf("%s;%s;%s\n", d->name, d->code, d->teacher);
+}
+
 void discipline_show_students(Discipline *d) {
     //Relatorio 1
     LinkedList *students = linked_list_construct();
@@ -165,6 +170,10 @@ int discipline_get_disapprovals(Discipline *d) {
 
 char *discipline_get_teacher(Discipline *d) {
     return d->teacher;
+}
+
+LinkedList *discipline_get_registrations(Discipline *d) {
+    return d->registrations;
 }
 
 int discipline_is_approved(Discipline *d, Student *s) {

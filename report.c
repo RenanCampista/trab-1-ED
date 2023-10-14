@@ -17,6 +17,7 @@ Teacher *teacher_construct(char *name) {
         
     t->name = (char*)malloc((strlen(name) + 1) * sizeof(char));
     strcpy(t->name, name);
+    t->name[strlen(name)] = '\0';
     t->disapprovals = 0;
     return t;
 }
@@ -43,7 +44,10 @@ int teacher_compare_disapprovals(data_type data1, data_type data2) {
 
 void teacher_print(data_type data) {
     Teacher *t = (Teacher*)data;
-    printf("%s: %d\n", t->name, t->disapprovals);
+
+    printf("%s %d\n", t->name, t->disapprovals);
+  
+
 }
  
 void report_1(LinkedList *disciplines) {
@@ -206,7 +210,7 @@ void report_11(LinkedList *disciplines) {
 
 }
 
-void report_12(LinkedList *disciplines) {
+void report_12(LinkedList *disciplines, LinkedList *students) {
     data_type discipline_code[50];
     scanf("\n%[^\n]", (char*)discipline_code);
     int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
@@ -219,5 +223,40 @@ void report_12(LinkedList *disciplines) {
             linked_list_remove(p->prerequisites, d, NULL);
         }
         linked_list_remove(disciplines, d, discipline_destroy);
+    }
+
+    for(int i = linked_list_size(students) - 1; i >= 0; i--) {
+        Student *s = linked_list_get(students, i);
+        student_print_all_data(s);
+    }
+    printf("\n");
+
+    for (int i = linked_list_size(disciplines) - 1; i >= 0; i--) {
+        Discipline *d = linked_list_get(disciplines, i);
+        discipline_print_name_and_teacher(d);
+    }
+    printf("\n");
+
+    for (int i = 0; i < linked_list_size(disciplines); i++) {
+        Discipline *d = linked_list_get(disciplines, i);
+        LinkedList *prerequisites = discipline_get_direct_prerequisites(d);
+        
+        for (int j = 0; j < linked_list_size(prerequisites); j++) {
+            Discipline *p = linked_list_get(prerequisites, j);
+            printf("%s;%s\n", d->code, p->code);
+        }
+        linked_list_destroy_node(prerequisites);
+    }
+
+    printf("\n");
+
+    for (int i = 0; i < linked_list_size(disciplines); i++) {
+        Discipline *d = linked_list_get(disciplines, i);
+        LinkedList *registrations = discipline_get_registrations(d);
+        for (int j = linked_list_size(registrations) - 1; j >= 0; j--) {
+            Registration *r = linked_list_get(registrations, j);
+            //<código da disciplina>;<matrícula do aluno>;<nota>;<presenças>;<aprovado: 0 ou 1>
+            printf("%s;%d;%d;%.1f;%d\n", d->code, registration_get_registration_number(r), (int)registration_get_grade(r), registration_get_presence_percentage(r), registration_get_status(r));
+        }
     }
 }

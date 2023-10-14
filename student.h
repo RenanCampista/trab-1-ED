@@ -17,6 +17,7 @@ int student_verify_registration(data_type data, data_type target_code);
 int student_get_registration_number(Student *s);
 void student_print_name(data_type data);
 void student_print_registration_number(Student *s);
+void student_print_all_data(data_type data);
 int student_compare_registration(data_type data1, data_type data2);
 
 #endif

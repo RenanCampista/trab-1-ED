@@ -60,7 +60,7 @@ void report_11(LinkedList *disciplines);
 /**
  * Lê o código de uma disciplina e remove todas as menções à disciplina nas estruturas de dados. Em seguida, mostra na tela qual seria o conteúdo do arquivo de entrada após a remoção da disciplina.
 */
-void report_12(LinkedList *disciplines);
+void report_12(LinkedList *disciplines, LinkedList *students);
 
 
 

@@ -119,7 +119,7 @@ int main() {
     else if(report_number == 11)
         report_11(disciplines);
     else if(report_number == 12)
-        report_12(disciplines);
+        report_12(disciplines, students);
     else
         printf("Opcao de relatorio invalido.");
 

@@ -24,8 +24,10 @@ int discipline_compare_approval_percentage(data_type data1, data_type data2);
 void discipline_add_prerequisite(Discipline *d, Discipline *p);
 void discipline_print_name(data_type data);
 void discipline_print_data(data_type data);
+void discipline_print_name_and_teacher(data_type data);
 int discipline_get_number_registrations(Discipline *d);
 int discipline_get_number_approved(Discipline *d);
+LinkedList *discipline_get_registrations(Discipline *d);
 void discipline_print_statistics(Discipline *d);
 
 int discipline_has_registration(Discipline *d, Student *s);
