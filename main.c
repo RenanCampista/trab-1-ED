@@ -82,7 +82,6 @@ int main() {
 
         int disc_idx = linked_list_search(disciplines, discipline_code, discipline_verify_code);
         int stu_idx = linked_list_search(students, &registration_number, student_verify_registration);
-        //printf("disc_idx: %d e stu_idx: %d\n", disc_idx, stu_idx);
         if (disc_idx == -1 || stu_idx == -1) {
             //limpar a linha
             char line[100];

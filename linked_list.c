@@ -58,7 +58,6 @@ void linked_list_remove(LinkedList *l, data_type value, void (*destroy_fn)(data_
             node_destroy(n, destroy_fn);
         else
             free(n);
-        //node_destroy(n, destroy_fn);
         l->size--;
         return;
     }
@@ -71,7 +70,6 @@ void linked_list_remove(LinkedList *l, data_type value, void (*destroy_fn)(data_
                 node_destroy(aux, destroy_fn);
             else
                 free(aux);
-            //node_destroy(aux, destroy_fn);
             l->size--;
             return;
         }
@@ -83,10 +81,7 @@ void linked_list_print(LinkedList *l, void (*print_fn)(data_type)) {
     Node *n = l->head;
 
     while(n != NULL) {
-        if (print_fn != NULL)
-            print_fn(n->data);
-        else
-            printf("%s ", (char*)n->data);
+        print_fn(n->data);
         n = n->next;
     }
 }

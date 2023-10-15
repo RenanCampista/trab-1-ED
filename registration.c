@@ -78,5 +78,3 @@ int registration_check_inconsistency(Registration *r) {
         
    }
 }
-
-
