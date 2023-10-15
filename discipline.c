@@ -277,6 +277,9 @@ int discipline_get_number_approved(Discipline *d) {
 }
 
 float discipline_get_average_grade(Discipline *d) {
+    if (linked_list_size(d->registrations) == 0)
+        return 0;
+    
     float average = 0;
 
     for (int i = 0; i < linked_list_size(d->registrations); i++) {
@@ -288,6 +291,8 @@ float discipline_get_average_grade(Discipline *d) {
 }
 
 float discipline_get_approval_percentage(Discipline *d) {
+    if (linked_list_size(d->registrations) == 0)
+        return 0;
     int approved = discipline_get_number_approved(d);
     return (float)approved / linked_list_size(d->registrations);
 }
@@ -298,7 +303,7 @@ int discipline_compare_approval_percentage(data_type data1, data_type data2) {
     Discipline *d2 = (Discipline *)data2;
     float percentage1 = discipline_get_approval_percentage(d1);
     float percentage2 = discipline_get_approval_percentage(d2);
-    return percentage1 > percentage2;
+    return percentage1 < percentage2;
 }
 
 void discipline_print_statistics(Discipline *d) {

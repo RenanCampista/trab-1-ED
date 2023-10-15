@@ -17,8 +17,11 @@ int main() {
     scanf("%[^\n]", file_name);
 
     FILE *f = fopen(file_name, "r");
-    if (f == NULL)
+    if (f == NULL) {
+        linked_list_destroy_node(students);
+        linked_list_destroy_node(disciplines);
         exit(printf("Erro ao abrir o arquivo"));
+    }
 
 
     fscanf(f, "\n%d", &number_students);

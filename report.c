@@ -64,6 +64,10 @@ void report_2(LinkedList *disciplines) {
     int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);
     Discipline *d = linked_list_get(disciplines, idx);
     LinkedList *prerequisites = discipline_get_direct_prerequisites(d);
+    
+    if (linked_list_size(prerequisites) > 1)
+        prerequisites = linked_list_reverse(prerequisites);
+    
     linked_list_print(prerequisites, discipline_print_name);
     linked_list_destroy_node(prerequisites);
 }
@@ -74,6 +78,10 @@ void report_3(LinkedList *disciplines) {
     int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);
     Discipline *d = linked_list_get(disciplines, idx);
     LinkedList *full_prerequisites = discipline_get_full_prerequisites(d);
+    
+    if (linked_list_size(full_prerequisites) > 1)
+        full_prerequisites = linked_list_reverse(full_prerequisites);
+
     linked_list_print(full_prerequisites, discipline_print_name);
     linked_list_destroy_node(full_prerequisites);
 }
@@ -153,7 +161,8 @@ void report_8(LinkedList *disciplines) {
         Discipline *d = linked_list_get(disciplines, i);
         count_prerequisites_nr += discipline_check_prerequisites(d);
     }
-    printf("Total de ocorrencias com pre requisitos nao cursados: %d\n", count_prerequisites_nr);
+    //printf("Total de ocorrencias com pre requisitos nao cursados: ");
+    printf("%d\n", count_prerequisites_nr);
 }
 
 void report_9(LinkedList *disciplines) {
@@ -162,10 +171,14 @@ void report_9(LinkedList *disciplines) {
         Discipline *d = linked_list_get(disciplines, i);
         count_prerequisites_disapproved += discipline_check_prerequisites_disapproved(d);
     }
-    printf("Total de ocorrencias com pre requisitos nao aprovados: %d\n", count_prerequisites_disapproved);
+    //printf("Total de ocorrencias com pre requisitos nao aprovados: ");
+    printf("%d\n", count_prerequisites_disapproved);
 }
 
 void report_10(LinkedList *disciplines, LinkedList *students) {
+    if (linked_list_size(students) > 1)
+        linked_list_sort(students, student_compare_name);
+    
     for (int i = 0; i < linked_list_size(students); i++) {
         Student *s = linked_list_get(students, i);
         printf("Nome: ");
@@ -202,7 +215,9 @@ void report_10(LinkedList *disciplines, LinkedList *students) {
 }
 
 void report_11(LinkedList *disciplines) {
-    linked_list_sort(disciplines, discipline_compare_approval_percentage);
+    if (linked_list_size(disciplines) > 1)
+        linked_list_sort(disciplines, discipline_compare_approval_percentage);
+    
     for (int i = 0; i < linked_list_size(disciplines); i++) {
         Discipline *d = linked_list_get(disciplines, i);
         discipline_print_statistics(d);

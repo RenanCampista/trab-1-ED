@@ -19,5 +19,5 @@ void student_print_name(data_type data);
 void student_print_registration_number(Student *s);
 void student_print_all_data(data_type data);
 int student_compare_registration(data_type data1, data_type data2);
-
+int student_compare_name(data_type data1, data_type data2);
 #endif
