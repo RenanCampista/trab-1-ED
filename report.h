@@ -62,7 +62,4 @@ void report_11(LinkedList *disciplines);
 */
 void report_12(LinkedList *disciplines, LinkedList *students);
 
-
-
-
 #endif

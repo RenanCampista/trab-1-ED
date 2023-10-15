@@ -271,7 +271,8 @@ void report_12(LinkedList *disciplines, LinkedList *students) {
         for (int j = linked_list_size(registrations) - 1; j >= 0; j--) {
             Registration *r = linked_list_get(registrations, j);
             //<código da disciplina>;<matrícula do aluno>;<nota>;<presenças>;<aprovado: 0 ou 1>
-            printf("%s;%d;%d;%.1f;%d\n", d->code, registration_get_registration_number(r), (int)registration_get_grade(r), registration_get_presence_percentage(r), registration_get_status(r));
+            printf("%s;%d;%d;%.1f;%d\n", d->code, registration_get_registration_number(r), 
+                                                    (int)registration_get_grade(r), registration_get_presence_percentage(r), registration_get_status(r));
         }
     }
 }
