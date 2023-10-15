@@ -39,17 +39,15 @@ int teacher_compare_name(data_type data1, data_type data2) {
 int teacher_compare_disapprovals(data_type data1, data_type data2) {
     Teacher *t1 = (Teacher*)data1;
     Teacher *t2 = (Teacher*)data2;
-    return t1->disapprovals - t2->disapprovals;
+    return t1->disapprovals < t2->disapprovals;
 }
 
 void teacher_print(data_type data) {
     Teacher *t = (Teacher*)data;
-
-    printf("%s %d\n", t->name, t->disapprovals);
-  
-
+    t->name[strlen(t->name) - 1] = '\0';
+    printf("%s: %d\n", t->name, t->disapprovals);
 }
- 
+
 void report_1(LinkedList *disciplines) {
     char code_dsc[50];
     scanf("\n%[^\n]", code_dsc);
