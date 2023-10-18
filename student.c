@@ -54,5 +54,5 @@ int student_compare_registration(data_type data1, data_type data2) {
 int student_compare_name(data_type data1, data_type data2) {
     Student *s1 = (Student *)data1;
     Student *s2 = (Student *)data2;
-    return strcmp(s1->name, s2->name);
+    return strcmp(s1->name, s2->name) > 0;
 }
