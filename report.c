@@ -44,13 +44,14 @@ int teacher_compare_disapprovals(data_type data1, data_type data2) {
 
 void teacher_print(data_type data) {
     Teacher *t = (Teacher*)data;
-    t->name[strlen(t->name) - 1] = '\0';
-    printf("%s: %d\n", t->name, t->disapprovals);
+    t->name[strlen(t->name)] = '\0';
+    printf("%s;%d\n", t->name, t->disapprovals);
 }
 
 void report_1(LinkedList *disciplines) {
     char code_dsc[50];
     scanf("\n%[^\n]", code_dsc);
+    printf("Alunos matriculados\n");
     int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);
     Discipline *d = linked_list_get(disciplines, idx);
     discipline_show_students(d);
@@ -66,6 +67,7 @@ void report_2(LinkedList *disciplines) {
     if (linked_list_size(prerequisites) > 1)
         prerequisites = linked_list_reverse(prerequisites);
     
+    printf("Nome da disciplina\n");
     linked_list_print(prerequisites, discipline_print_name);
     linked_list_destroy_node(prerequisites);
 }
@@ -75,11 +77,13 @@ void report_3(LinkedList *disciplines) {
     scanf("\n%[^\n]", code_dsc);
     int idx = linked_list_search(disciplines, code_dsc, discipline_verify_code);
     Discipline *d = linked_list_get(disciplines, idx);
+    
     LinkedList *full_prerequisites = discipline_get_full_prerequisites(d);
     
     if (linked_list_size(full_prerequisites) > 1)
         full_prerequisites = linked_list_reverse(full_prerequisites);
 
+    printf("Nome da disciplina\n");
     linked_list_print(full_prerequisites, discipline_print_name);
     linked_list_destroy_node(full_prerequisites);
 }
@@ -97,8 +101,9 @@ void report_4(LinkedList *disciplines, LinkedList *students) {
             linked_list_push_front(registrations_student, d);
         }
     }
-    //remover disciplinas repetidas
+
     linked_list_unique(registrations_student, discipline_compare_code, discipline_destroy);
+    printf("Nome da disciplina\n");
     linked_list_print(registrations_student, discipline_print_name);
     linked_list_destroy_node(registrations_student);
 }
@@ -124,6 +129,7 @@ void report_5(LinkedList *disciplines) {
     }
 
     linked_list_sort(teachers, teacher_compare_disapprovals);
+    printf("Nome do professor;Numero de reprovacoes\n");
     linked_list_print(teachers, teacher_print);
     linked_list_destroy(teachers, teacher_destroy);
 
@@ -142,11 +148,13 @@ void report_6(LinkedList *disciplines, LinkedList *students) {
         }
     }
     linked_list_sort(disc_appvd, discipline_compare_name);
+    printf("Nome da disciplina\n");
     linked_list_print(disc_appvd, discipline_print_name);
     linked_list_destroy_node(disc_appvd);
 }
 
 void report_7(LinkedList *disciplines) {
+    printf("Codigo disciplina;Matricula do aluno;Nota;Presenca;Aprovado\n");
     for (int i = 0; i < linked_list_size(disciplines); i++) {
         Discipline *d = linked_list_get(disciplines, i);
         discipline_check_inconsistency(d);
@@ -159,7 +167,7 @@ void report_8(LinkedList *disciplines) {
         Discipline *d = linked_list_get(disciplines, i);
         count_prerequisites_nr += discipline_check_prerequisites(d);
     }
-    //printf("Total de ocorrencias com pre requisitos nao cursados: ");
+    printf("Total de ocorrencias com pre requisitos nao cursados: ");
     printf("%d\n", count_prerequisites_nr);
 }
 
@@ -169,7 +177,7 @@ void report_9(LinkedList *disciplines) {
         Discipline *d = linked_list_get(disciplines, i);
         count_prerequisites_disapproved += discipline_check_prerequisites_disapproved(d);
     }
-    //printf("Total de ocorrencias com pre requisitos nao aprovados: ");
+    printf("Total de ocorrencias com pre requisitos nao aprovados: ");
     printf("%d\n", count_prerequisites_disapproved);
 }
 

@@ -98,32 +98,19 @@ int main() {
     int report_number;
     printf("Digite o numero do relatorio: ");
     scanf("\n%d", &report_number);
-    if(report_number == 1)
-        report_1(disciplines);
-    else if(report_number == 2)
-        report_2(disciplines);
-    else if(report_number == 3)
-        report_3(disciplines);
-    else if(report_number == 4)
-        report_4(disciplines, students);
-    else if(report_number == 5)
-        report_5(disciplines);
-    else if(report_number == 6)
-        report_6(disciplines, students);
-    else if(report_number == 7)
-        report_7(disciplines);
-    else if(report_number == 8)
-        report_8(disciplines);
-    else if(report_number == 9)
-        report_9(disciplines);
-    else if(report_number == 10)
-        report_10(disciplines, students);
-    else if(report_number == 11)
-        report_11(disciplines);
-    else if(report_number == 12)
-        report_12(disciplines, students);
-    else
-        printf("Opcao de relatorio invalido.");
+    if(report_number == 1) report_1(disciplines);
+    else if(report_number == 2) report_2(disciplines);
+    else if(report_number == 3) report_3(disciplines);
+    else if(report_number == 4) report_4(disciplines, students);
+    else if(report_number == 5) report_5(disciplines);
+    else if(report_number == 6) report_6(disciplines, students);
+    else if(report_number == 7) report_7(disciplines);
+    else if(report_number == 8) report_8(disciplines);
+    else if(report_number == 9) report_9(disciplines);
+    else if(report_number == 10) report_10(disciplines, students);
+    else if(report_number == 11) report_11(disciplines);
+    else if(report_number == 12) report_12(disciplines, students);
+    else printf("Opcao de relatorio invalido.");
 
     linked_list_destroy(students, student_destroy);
     linked_list_destroy(disciplines, discipline_destroy);

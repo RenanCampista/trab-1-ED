@@ -1,0 +1,11 @@
+Matricula 888
+Fez INF-1 uma vez e foi reprovado
+Fez INF-2 tres vezes e reprovou em todas
+
+Matricula 3
+Fez INF-1 uma vez e foi aprovado
+Fez INF-2 uma vez e foi aprovado
+
+Matricula 10
+Fez INF-2 e foi aprovado
+Nao fez INF-1

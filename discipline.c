@@ -177,39 +177,27 @@ LinkedList *discipline_get_registrations(Discipline *d) {
 }
 
 int discipline_is_approved(Discipline *d, Student *s) {
-    //Relatorio 6
-    //Buscar o aluno na lista de matriculas. Retornar 1 se aprovado e 0 se reprovado
-
     int idx = linked_list_search(d->registrations, s, registration_verify_student);
     if (idx == -1)
         return 0;
 
     Registration *r = linked_list_get(d->registrations, idx);
-    return registration_get_status(r) == APPROVED;
-    /**
-     * Na main, se retornar 1, adicionar a uma lista para entao ordenar ela no final
-    */
+    return registration_get_status(r) == APPROVED || (r->final_grade >= 5 && r->presence_percentage >= 0.75);
 }
 
 void discipline_check_inconsistency(Discipline *d) {
-    //Relatorio 7 Verificar se na disciplina ha alguma inconsistencia na matricula
-    //Discipline *d = (Discipline *)data;
-
     for (int i = 0; i < linked_list_size(d->registrations); i++) {
         Registration *r = linked_list_get(d->registrations, i);
         if (registration_check_inconsistency(r)) {
             discipline_print_code(d);
             printf(";");
             registration_print(r);
-            // Student *s = registration_get_student(r);
-            // printf("%s\n", student_get_name(s));
+
         }
     }
 }
 
 int discipline_check_prerequisites(Discipline *d) {
-    //Relatorio 8
-    //Verificar se os alunos da disciplina cursaram os pre requisitos e retornar o total de alunos que nao cursaram os pre requisitos se houver
     int total = 0, aux = 0;
     LinkedList *prerequisites = linked_list_construct();
 
@@ -235,8 +223,6 @@ int discipline_check_prerequisites(Discipline *d) {
 }
 
 int discipline_check_prerequisites_disapproved(Discipline *d) {
-    //Relatorio 9
-    //Alunos que cursaram os pre requisitos mas foram reprovados
     int total = 0, aux = 0;
     LinkedList *prerequisites = linked_list_construct();
 
@@ -297,7 +283,6 @@ float discipline_get_approval_percentage(Discipline *d) {
     return (float)approved / linked_list_size(d->registrations);
 }
 
-//Fazer uma função para comparar 2 disciplinas o percentual de aprovaçao
 int discipline_compare_approval_percentage(data_type data1, data_type data2) {
     Discipline *d1 = (Discipline *)data1;
     Discipline *d2 = (Discipline *)data2;
@@ -307,7 +292,6 @@ int discipline_compare_approval_percentage(data_type data1, data_type data2) {
 }
 
 void discipline_print_statistics(Discipline *d) {
-    //Relatório 11
     printf("Codigo da disciplina: ");
     discipline_print_code(d);
     printf("\nNome da disciplina: ");

@@ -71,7 +71,7 @@ int registration_check_inconsistency(Registration *r) {
             return 0;
         
    } else {
-        if (r->final_grade >= 5.0 || r->presence_percentage >= 0.75) 
+        if (r->final_grade >= 5.0 && r->presence_percentage >= 0.75) 
             return 1;
         else 
             return 0;
